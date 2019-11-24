@@ -1,33 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "E:\\avnish\\RM\\Repayabl\\Repayabl\\Repayabl.csproj": {}
+    "C:\\Users\\Avnish\\source\\repos\\Repayabl\\Repayabl\\Repayabl.csproj": {}
   },
   "projects": {
-    "E:\\avnish\\RM\\Repayabl\\Repayabl\\Repayabl.csproj": {
+    "C:\\Users\\Avnish\\source\\repos\\Repayabl\\Repayabl\\Repayabl.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\avnish\\RM\\Repayabl\\Repayabl\\Repayabl.csproj",
+        "projectUniqueName": "C:\\Users\\Avnish\\source\\repos\\Repayabl\\Repayabl\\Repayabl.csproj",
         "projectName": "Repayabl",
-        "projectPath": "E:\\avnish\\RM\\Repayabl\\Repayabl\\Repayabl.csproj",
-        "packagesPath": "C:\\Users\\avnish.GENINF\\.nuget\\packages\\",
-        "outputPath": "E:\\avnish\\RM\\Repayabl\\Repayabl\\obj\\",
+        "projectPath": "C:\\Users\\Avnish\\source\\repos\\Repayabl\\Repayabl\\Repayabl.csproj",
+        "packagesPath": "C:\\Users\\Avnish\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Avnish\\source\\repos\\Repayabl\\Repayabl\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\avnish.GENINF\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Avnish\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "http://nuget.grapecity.com/nuget": {},
-          "http://nuget.syncfusion.com/nuget_universalwindows/nuget/getsyncfusionpackages/universalwindows": {},
-          "http://tfs2017.geninf.local/nuget/nuget/": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
