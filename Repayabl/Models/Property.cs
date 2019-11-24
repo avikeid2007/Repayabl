@@ -19,7 +19,7 @@ namespace Repayabl.Models
         public int Zip { get; set; }
         public int FloorCount { get; set; }
         public string Remarks { get; set; }
-        public Guid PropertyId { get; set; }
+        
         public Guid UserId { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<Room> Rooms { get; set; }

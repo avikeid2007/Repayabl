@@ -37,8 +37,7 @@ namespace Repayabl.Models
         {
             modelBuilder.Entity<FamilyDetail>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
+                entity.Property(e => e.Id).HasDefaultValueSql("NEWSEQUENTIALID( )");
                 entity.Property(e => e.BirthDate).HasColumnType("datetime");
 
                 entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
@@ -83,7 +82,7 @@ namespace Repayabl.Models
 
             modelBuilder.Entity<Property>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).HasDefaultValueSql("NEWSEQUENTIALID( )");
                 entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
                 entity.Property(e => e.Address).IsRequired();
 
@@ -121,6 +120,7 @@ namespace Repayabl.Models
 
             modelBuilder.Entity<RentTransaction>(entity =>
             {
+
                 entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
                 entity.HasIndex(e => e.PaidBy)
                     .HasName("fkIdx_100");
@@ -128,7 +128,7 @@ namespace Repayabl.Models
                 entity.HasIndex(e => e.RoomId)
                     .HasName("fkIdx_103");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).HasDefaultValueSql("NEWSEQUENTIALID( )");
 
                 entity.Property(e => e.BillDate).HasColumnType("datetime");
 
@@ -165,13 +165,13 @@ namespace Repayabl.Models
                 entity.HasIndex(e => e.LastPaidBillId)
                     .HasName("fkIdx_134");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).HasDefaultValueSql("NEWSEQUENTIALID( )");
 
-                entity.Property(e => e.ElectRate).HasColumnType("numeric(2, 2)");
+                entity.Property(e => e.ElectRate).HasColumnType("numeric(10, 2)");
 
                 entity.Property(e => e.LastBillPaidDate).HasColumnType("datetime");
 
-                entity.Property(e => e.MonthlyRent).HasColumnType("numeric(8, 2)");
+                entity.Property(e => e.MonthlyRent).HasColumnType("numeric(15, 2)");
 
                 entity.Property(e => e.RoomNo)
                     .IsRequired()
@@ -194,7 +194,7 @@ namespace Repayabl.Models
             modelBuilder.Entity<TenantDocument>(entity =>
             {
                 entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).HasDefaultValueSql("NEWSEQUENTIALID( )");
 
                 entity.Property(e => e.FileExtension)
                     .IsRequired()
@@ -230,7 +230,7 @@ namespace Repayabl.Models
                 entity.HasIndex(e => e.TenantId)
                     .HasName("fkIdx_144");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).HasDefaultValueSql("NEWSEQUENTIALID( )");
 
                 entity.Property(e => e.TotalAdvance).HasColumnType("numeric(8, 2)");
 
@@ -246,7 +246,7 @@ namespace Repayabl.Models
             modelBuilder.Entity<Tenant>(entity =>
             {
                 entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).HasDefaultValueSql("NEWSEQUENTIALID( )");
 
                 entity.Property(e => e.BirthDate).HasColumnType("datetime");
 
@@ -280,8 +280,8 @@ namespace Repayabl.Models
             modelBuilder.Entity<User>(entity =>
             {
                 entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
-               
-                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.Id).HasDefaultValueSql("NEWSEQUENTIALID( )");
 
                 entity.Property(e => e.Password)
                     .IsRequired()

@@ -15,7 +15,7 @@ namespace Repayabl.Models
         public string RoomNo { get; set; }
         public int? RoomFloorNo { get; set; }
         public Guid PropertyId { get; set; }
-        public Guid CurrentTenantId { get; set; }
+        public Guid? CurrentTenantId { get; set; }
         public decimal MonthlyRent { get; set; }
         public decimal ElectRate { get; set; }
         public DateTime? LastBillPaidDate { get; set; }
