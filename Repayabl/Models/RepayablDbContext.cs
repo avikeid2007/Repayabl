@@ -15,31 +15,33 @@ namespace Repayabl.Models
         {
         }
 
-        public virtual DbSet<FamilyDetails> FamilyDetails { get; set; }
-        public virtual DbSet<Properties> Properties { get; set; }
-        public virtual DbSet<RentTransactions> RentTransactions { get; set; }
-        public virtual DbSet<Rooms> Rooms { get; set; }
-        public virtual DbSet<TenantDocuments> TenantDocuments { get; set; }
-        public virtual DbSet<TenantOutstandings> TenantOutstandings { get; set; }
-        public virtual DbSet<Tenants> Tenants { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<FamilyDetail> FamilyDetails { get; set; }
+        public virtual DbSet<Property> Properties { get; set; }
+        public virtual DbSet<RentTransaction> RentTransactions { get; set; }
+        public virtual DbSet<Room> Rooms { get; set; }
+        public virtual DbSet<TenantDocument> TenantDocuments { get; set; }
+        public virtual DbSet<TenantOutstanding> TenantOutstandings { get; set; }
+        public virtual DbSet<Tenant> Tenants { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=(local);Database=temp;Trusted_Connection=True;");
+
+                optionsBuilder.UseSqlServer("Server=(local);Database=Repayabl;Trusted_Connection=True;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<FamilyDetails>(entity =>
+            modelBuilder.Entity<FamilyDetail>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.BirthDate).HasColumnType("datetime");
+
+                entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
 
                 entity.Property(e => e.City)
                     .HasMaxLength(50)
@@ -76,12 +78,13 @@ namespace Repayabl.Models
                     .HasForeignKey(d => d.TenantId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_79");
+
             });
 
-            modelBuilder.Entity<Properties>(entity =>
+            modelBuilder.Entity<Property>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
-
+                entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
                 entity.Property(e => e.Address).IsRequired();
 
                 entity.Property(e => e.City)
@@ -110,8 +113,9 @@ namespace Repayabl.Models
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<RentTransactions>(entity =>
+            modelBuilder.Entity<RentTransaction>(entity =>
             {
+                entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
                 entity.HasIndex(e => e.PaidBy)
                     .HasName("fkIdx_100");
 
@@ -149,8 +153,9 @@ namespace Repayabl.Models
                     .HasConstraintName("FK_103");
             });
 
-            modelBuilder.Entity<Rooms>(entity =>
+            modelBuilder.Entity<Room>(entity =>
             {
+                entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
                 entity.HasIndex(e => e.LastPaidBillId)
                     .HasName("fkIdx_134");
 
@@ -180,8 +185,9 @@ namespace Repayabl.Models
                     .HasConstraintName("FK_37");
             });
 
-            modelBuilder.Entity<TenantDocuments>(entity =>
+            modelBuilder.Entity<TenantDocument>(entity =>
             {
+                entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.FileExtension)
@@ -212,8 +218,9 @@ namespace Repayabl.Models
                     .HasConstraintName("FK_117");
             });
 
-            modelBuilder.Entity<TenantOutstandings>(entity =>
+            modelBuilder.Entity<TenantOutstanding>(entity =>
             {
+                entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
                 entity.HasIndex(e => e.TenantId)
                     .HasName("fkIdx_144");
 
@@ -230,8 +237,9 @@ namespace Repayabl.Models
                     .HasConstraintName("FK_144");
             });
 
-            modelBuilder.Entity<Tenants>(entity =>
+            modelBuilder.Entity<Tenant>(entity =>
             {
+                entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.BirthDate).HasColumnType("datetime");
@@ -263,8 +271,9 @@ namespace Repayabl.Models
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<Users>(entity =>
+            modelBuilder.Entity<User>(entity =>
             {
+                entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
                 entity.HasIndex(e => e.PropertyId)
                     .HasName("fkIdx_122");
 
