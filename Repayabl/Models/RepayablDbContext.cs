@@ -41,6 +41,8 @@ namespace Repayabl.Models
 
                 entity.Property(e => e.BirthDate).HasColumnType("datetime");
 
+                entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
+
                 entity.Property(e => e.City)
                     .HasMaxLength(50)
                     .IsUnicode(false);
@@ -76,12 +78,13 @@ namespace Repayabl.Models
                     .HasForeignKey(d => d.TenantId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_79");
+
             });
 
             modelBuilder.Entity<Properties>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
-
+                entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
                 entity.Property(e => e.Address).IsRequired();
 
                 entity.Property(e => e.City)
@@ -112,6 +115,7 @@ namespace Repayabl.Models
 
             modelBuilder.Entity<RentTransactions>(entity =>
             {
+                entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
                 entity.HasIndex(e => e.PaidBy)
                     .HasName("fkIdx_100");
 
@@ -151,6 +155,7 @@ namespace Repayabl.Models
 
             modelBuilder.Entity<Rooms>(entity =>
             {
+                entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
                 entity.HasIndex(e => e.LastPaidBillId)
                     .HasName("fkIdx_134");
 
@@ -182,6 +187,7 @@ namespace Repayabl.Models
 
             modelBuilder.Entity<TenantDocuments>(entity =>
             {
+                entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.FileExtension)
@@ -214,6 +220,7 @@ namespace Repayabl.Models
 
             modelBuilder.Entity<TenantOutstandings>(entity =>
             {
+                entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
                 entity.HasIndex(e => e.TenantId)
                     .HasName("fkIdx_144");
 
@@ -232,6 +239,7 @@ namespace Repayabl.Models
 
             modelBuilder.Entity<Tenants>(entity =>
             {
+                entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.BirthDate).HasColumnType("datetime");
@@ -265,6 +273,7 @@ namespace Repayabl.Models
 
             modelBuilder.Entity<Users>(entity =>
             {
+                entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
                 entity.HasIndex(e => e.PropertyId)
                     .HasName("fkIdx_122");
 

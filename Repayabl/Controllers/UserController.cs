@@ -17,10 +17,10 @@ namespace Repayabl.Controllers
         {
 
         }
-        [HttpGet]
-        public ActionResult GetMany(string UserName,string Password)
-        { 
+        //[HttpGet]
+        //public ActionResult GetMany(string UserName,string Password)
+        //{ 
         
-        }
+        //}
     }
 }
