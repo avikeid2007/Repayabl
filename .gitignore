@@ -1,0 +1,5 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Repayabl/obj/MCD/Release/netcoreapp3.0/Repayabl.AssemblyInfoInputs.cache
