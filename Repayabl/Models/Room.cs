@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace Repayabl.Models
 {
-    public partial class Room: Auditor
+    public partial class Room : Auditor
     {
         public Room()
         {
             RentTransactions = new HashSet<RentTransaction>();
-            Users = new HashSet<User>();
+
         }
 
         public Guid Id { get; set; }
@@ -24,6 +24,5 @@ namespace Repayabl.Models
         public virtual Tenant CurrentTenant { get; set; }
         public virtual Property Property { get; set; }
         public virtual ICollection<RentTransaction> RentTransactions { get; set; }
-        public virtual ICollection<User> Users { get; set; }
     }
 }

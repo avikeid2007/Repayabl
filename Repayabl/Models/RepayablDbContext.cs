@@ -111,6 +111,12 @@ namespace Repayabl.Models
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.HasOne(d => d.User)
+                   .WithMany(p => p.Properties)
+                   .HasForeignKey(d => d.UserId)
+                   .HasConstraintName("FK_137");
+
             });
 
             modelBuilder.Entity<RentTransaction>(entity =>
@@ -274,12 +280,7 @@ namespace Repayabl.Models
             modelBuilder.Entity<User>(entity =>
             {
                 entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
-                entity.HasIndex(e => e.PropertyId)
-                    .HasName("fkIdx_122");
-
-                entity.HasIndex(e => e.RoomId)
-                    .HasName("fkIdx_28");
-
+               
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.Password)
@@ -291,17 +292,7 @@ namespace Repayabl.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Property)
-                    .WithMany(p => p.Users)
-                    .HasForeignKey(d => d.PropertyId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_122");
-
-                entity.HasOne(d => d.Room)
-                    .WithMany(p => p.Users)
-                    .HasForeignKey(d => d.RoomId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_28");
+               
             });
 
             OnModelCreatingPartial(modelBuilder);
