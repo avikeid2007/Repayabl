@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Repayabl.Models
 {
-    public partial class FamilyDetails
+    public partial class FamilyDetails : Auditor
     {
         public Guid Id { get; set; }
         public string FirstName { get; set; }

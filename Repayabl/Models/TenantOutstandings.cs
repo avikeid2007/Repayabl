@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Repayabl.Models
 {
-    public partial class TenantOutstandings
+    public partial class TenantOutstandings : Auditor
     {
         public Guid Id { get; set; }
         public decimal? TotalAdvance { get; set; }

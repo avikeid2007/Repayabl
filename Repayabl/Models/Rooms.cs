@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Repayabl.Models
 {
-    public partial class Rooms
+    public partial class Rooms: Auditor
     {
         public Rooms()
         {
