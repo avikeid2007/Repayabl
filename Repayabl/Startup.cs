@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +29,7 @@ namespace Repayabl
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<RepayablDbContext>(op => op.UseSqlServer(Configuration.GetConnectionString("Database")));
+
             services.AddControllers();
         }
 

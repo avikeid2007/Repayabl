@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Repayabl.Models
 {
-    public partial class RentTransactions : Auditor
+    public partial class RentTransaction : Auditor
     {
         public Guid Id { get; set; }
         public Guid RoomId { get; set; }
@@ -22,7 +22,7 @@ namespace Repayabl.Models
         public decimal? PaidAmount { get; set; }
         public int TotalPaybleMonth { get; set; }
 
-        public virtual Tenants PaidByNavigation { get; set; }
-        public virtual Rooms Room { get; set; }
+        public virtual Tenant PaidByNavigation { get; set; }
+        public virtual Room Room { get; set; }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Repayabl.Models
 {
-    public partial class FamilyDetails : Auditor
+    public partial class FamilyDetail : Auditor
     {
         public Guid Id { get; set; }
         public string FirstName { get; set; }
@@ -18,6 +18,6 @@ namespace Repayabl.Models
         public Guid TenantId { get; set; }
         public string Relationship { get; set; }
 
-        public virtual Tenants Tenant { get; set; }
+        public virtual Tenant Tenant { get; set; }
     }
 }

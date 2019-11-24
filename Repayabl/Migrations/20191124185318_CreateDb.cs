@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Repayabl.Migrations
 {
-    public partial class initialSetup : Migration
+    public partial class CreateDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,6 +12,10 @@ namespace Repayabl.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: true, defaultValueSql: "getdate()"),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    Modifed = table.Column<DateTime>(nullable: true),
+                    ModifiedBy = table.Column<string>(nullable: true),
                     Name = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
                     Address = table.Column<string>(nullable: false),
                     City = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
@@ -31,6 +35,10 @@ namespace Repayabl.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: true, defaultValueSql: "getdate()"),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    Modifed = table.Column<DateTime>(nullable: true),
+                    ModifiedBy = table.Column<string>(nullable: true),
                     FirstName = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
                     LastName = table.Column<string>(unicode: false, maxLength: 50, nullable: true),
                     Gender = table.Column<string>(unicode: false, maxLength: 10, nullable: false),
@@ -52,6 +60,10 @@ namespace Repayabl.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: true, defaultValueSql: "getdate()"),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    Modifed = table.Column<DateTime>(nullable: true),
+                    ModifiedBy = table.Column<string>(nullable: true),
                     FirstName = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
                     LastName = table.Column<string>(unicode: false, maxLength: 50, nullable: true),
                     Gender = table.Column<string>(unicode: false, maxLength: 10, nullable: false),
@@ -80,6 +92,10 @@ namespace Repayabl.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: true, defaultValueSql: "getdate()"),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    Modifed = table.Column<DateTime>(nullable: true),
+                    ModifiedBy = table.Column<string>(nullable: true),
                     RoomNo = table.Column<string>(unicode: false, maxLength: 10, nullable: false),
                     RoomFloorNo = table.Column<int>(nullable: true),
                     PropertyId = table.Column<Guid>(nullable: false),
@@ -111,6 +127,10 @@ namespace Repayabl.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: true, defaultValueSql: "getdate()"),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    Modifed = table.Column<DateTime>(nullable: true),
+                    ModifiedBy = table.Column<string>(nullable: true),
                     Title = table.Column<string>(unicode: false, maxLength: 50, nullable: true),
                     Type = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
                     Payload = table.Column<byte[]>(nullable: false),
@@ -134,6 +154,10 @@ namespace Repayabl.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: true, defaultValueSql: "getdate()"),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    Modifed = table.Column<DateTime>(nullable: true),
+                    ModifiedBy = table.Column<string>(nullable: true),
                     TotalAdvance = table.Column<decimal>(type: "numeric(8, 2)", nullable: true),
                     TotalPending = table.Column<decimal>(type: "numeric(8, 2)", nullable: true),
                     TenantId = table.Column<Guid>(nullable: false)
@@ -154,6 +178,10 @@ namespace Repayabl.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: true, defaultValueSql: "getdate()"),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    Modifed = table.Column<DateTime>(nullable: true),
+                    ModifiedBy = table.Column<string>(nullable: true),
                     RoomId = table.Column<Guid>(nullable: false),
                     BillNo = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
                     BillDate = table.Column<DateTime>(type: "datetime", nullable: false),
@@ -192,12 +220,17 @@ namespace Repayabl.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: true, defaultValueSql: "getdate()"),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    Modifed = table.Column<DateTime>(nullable: true),
+                    ModifiedBy = table.Column<string>(nullable: true),
                     UserName = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
                     Password = table.Column<string>(unicode: false, nullable: false),
                     IsAuth = table.Column<bool>(nullable: false),
                     IsAdmin = table.Column<bool>(nullable: false),
-                    RoomId = table.Column<Guid>(nullable: false),
-                    PropertyId = table.Column<Guid>(nullable: false)
+                    RoomId = table.Column<Guid>(nullable: true),
+                    PropertyId = table.Column<Guid>(nullable: true),
+                    Otp = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

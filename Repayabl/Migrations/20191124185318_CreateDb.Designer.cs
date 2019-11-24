@@ -10,8 +10,8 @@ using Repayabl.Models;
 namespace Repayabl.Migrations
 {
     [DbContext(typeof(RepayablDbContext))]
-    [Migration("20191124180721_AddAuditorColumns")]
-    partial class AddAuditorColumns
+    [Migration("20191124185318_CreateDb")]
+    partial class CreateDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace Repayabl.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Repayabl.Models.FamilyDetails", b =>
+            modelBuilder.Entity("Repayabl.Models.FamilyDetail", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -96,7 +96,7 @@ namespace Repayabl.Migrations
                     b.ToTable("FamilyDetails");
                 });
 
-            modelBuilder.Entity("Repayabl.Models.Properties", b =>
+            modelBuilder.Entity("Repayabl.Models.Property", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -160,7 +160,7 @@ namespace Repayabl.Migrations
                     b.ToTable("Properties");
                 });
 
-            modelBuilder.Entity("Repayabl.Models.RentTransactions", b =>
+            modelBuilder.Entity("Repayabl.Models.RentTransaction", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -238,7 +238,7 @@ namespace Repayabl.Migrations
                     b.ToTable("RentTransactions");
                 });
 
-            modelBuilder.Entity("Repayabl.Models.Rooms", b =>
+            modelBuilder.Entity("Repayabl.Models.Room", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -296,99 +296,7 @@ namespace Repayabl.Migrations
                     b.ToTable("Rooms");
                 });
 
-            modelBuilder.Entity("Repayabl.Models.TenantDocuments", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("Created")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FileExtension")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)")
-                        .HasMaxLength(50)
-                        .IsUnicode(false);
-
-                    b.Property<string>("MimeType")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)")
-                        .HasMaxLength(50)
-                        .IsUnicode(false);
-
-                    b.Property<DateTime?>("Modifed")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte[]>("Payload")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<Guid>("TenantId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("varchar(50)")
-                        .HasMaxLength(50)
-                        .IsUnicode(false);
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)")
-                        .HasMaxLength(50)
-                        .IsUnicode(false);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TenantId");
-
-                    b.ToTable("TenantDocuments");
-                });
-
-            modelBuilder.Entity("Repayabl.Models.TenantOutstandings", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("Created")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("Modifed")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("TenantId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal?>("TotalAdvance")
-                        .HasColumnType("numeric(8, 2)");
-
-                    b.Property<decimal?>("TotalPending")
-                        .HasColumnType("numeric(8, 2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TenantId")
-                        .HasName("fkIdx_144");
-
-                    b.ToTable("TenantOutstandings");
-                });
-
-            modelBuilder.Entity("Repayabl.Models.Tenants", b =>
+            modelBuilder.Entity("Repayabl.Models.Tenant", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -456,7 +364,99 @@ namespace Repayabl.Migrations
                     b.ToTable("Tenants");
                 });
 
-            modelBuilder.Entity("Repayabl.Models.Users", b =>
+            modelBuilder.Entity("Repayabl.Models.TenantDocument", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("Created")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getdate()");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileExtension")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
+
+                    b.Property<string>("MimeType")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
+
+                    b.Property<DateTime?>("Modifed")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Payload")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<Guid>("TenantId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TenantId");
+
+                    b.ToTable("TenantDocuments");
+                });
+
+            modelBuilder.Entity("Repayabl.Models.TenantOutstanding", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("Created")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getdate()");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Modifed")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("TenantId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal?>("TotalAdvance")
+                        .HasColumnType("numeric(8, 2)");
+
+                    b.Property<decimal?>("TotalPending")
+                        .HasColumnType("numeric(8, 2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TenantId")
+                        .HasName("fkIdx_144");
+
+                    b.ToTable("TenantOutstandings");
+                });
+
+            modelBuilder.Entity("Repayabl.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -481,15 +481,18 @@ namespace Repayabl.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Otp")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("varchar(max)")
                         .IsUnicode(false);
 
-                    b.Property<Guid>("PropertyId")
+                    b.Property<Guid?>("PropertyId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("RoomId")
+                    b.Property<Guid?>("RoomId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("UserName")
@@ -509,75 +512,73 @@ namespace Repayabl.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Repayabl.Models.FamilyDetails", b =>
+            modelBuilder.Entity("Repayabl.Models.FamilyDetail", b =>
                 {
-                    b.HasOne("Repayabl.Models.Tenants", "Tenant")
+                    b.HasOne("Repayabl.Models.Tenant", "Tenant")
                         .WithMany("FamilyDetails")
                         .HasForeignKey("TenantId")
                         .HasConstraintName("FK_79")
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Repayabl.Models.RentTransactions", b =>
+            modelBuilder.Entity("Repayabl.Models.RentTransaction", b =>
                 {
-                    b.HasOne("Repayabl.Models.Tenants", "PaidByNavigation")
+                    b.HasOne("Repayabl.Models.Tenant", "PaidByNavigation")
                         .WithMany("RentTransactions")
                         .HasForeignKey("PaidBy")
                         .HasConstraintName("FK_100");
 
-                    b.HasOne("Repayabl.Models.Rooms", "Room")
+                    b.HasOne("Repayabl.Models.Room", "Room")
                         .WithMany("RentTransactions")
                         .HasForeignKey("RoomId")
                         .HasConstraintName("FK_103")
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Repayabl.Models.Rooms", b =>
+            modelBuilder.Entity("Repayabl.Models.Room", b =>
                 {
-                    b.HasOne("Repayabl.Models.Tenants", "CurrentTenant")
+                    b.HasOne("Repayabl.Models.Tenant", "CurrentTenant")
                         .WithMany("Rooms")
                         .HasForeignKey("CurrentTenantId")
                         .HasConstraintName("FK_52")
                         .IsRequired();
 
-                    b.HasOne("Repayabl.Models.Properties", "Property")
+                    b.HasOne("Repayabl.Models.Property", "Property")
                         .WithMany("Rooms")
                         .HasForeignKey("PropertyId")
                         .HasConstraintName("FK_37")
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Repayabl.Models.TenantDocuments", b =>
+            modelBuilder.Entity("Repayabl.Models.TenantDocument", b =>
                 {
-                    b.HasOne("Repayabl.Models.Tenants", "Tenant")
+                    b.HasOne("Repayabl.Models.Tenant", "Tenant")
                         .WithMany("TenantDocuments")
                         .HasForeignKey("TenantId")
                         .HasConstraintName("FK_117")
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Repayabl.Models.TenantOutstandings", b =>
+            modelBuilder.Entity("Repayabl.Models.TenantOutstanding", b =>
                 {
-                    b.HasOne("Repayabl.Models.Tenants", "Tenant")
+                    b.HasOne("Repayabl.Models.Tenant", "Tenant")
                         .WithMany("TenantOutstandings")
                         .HasForeignKey("TenantId")
                         .HasConstraintName("FK_144")
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Repayabl.Models.Users", b =>
+            modelBuilder.Entity("Repayabl.Models.User", b =>
                 {
-                    b.HasOne("Repayabl.Models.Properties", "Property")
+                    b.HasOne("Repayabl.Models.Property", "Property")
                         .WithMany("Users")
                         .HasForeignKey("PropertyId")
-                        .HasConstraintName("FK_122")
-                        .IsRequired();
+                        .HasConstraintName("FK_122");
 
-                    b.HasOne("Repayabl.Models.Rooms", "Room")
+                    b.HasOne("Repayabl.Models.Room", "Room")
                         .WithMany("Users")
                         .HasForeignKey("RoomId")
-                        .HasConstraintName("FK_28")
-                        .IsRequired();
+                        .HasConstraintName("FK_28");
                 });
 #pragma warning restore 612, 618
         }

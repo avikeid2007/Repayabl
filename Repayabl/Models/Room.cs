@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace Repayabl.Models
 {
-    public partial class Rooms: Auditor
+    public partial class Room: Auditor
     {
-        public Rooms()
+        public Room()
         {
-            RentTransactions = new HashSet<RentTransactions>();
-            Users = new HashSet<Users>();
+            RentTransactions = new HashSet<RentTransaction>();
+            Users = new HashSet<User>();
         }
 
         public Guid Id { get; set; }
@@ -21,9 +21,9 @@ namespace Repayabl.Models
         public DateTime? LastBillPaidDate { get; set; }
         public Guid? LastPaidBillId { get; set; }
 
-        public virtual Tenants CurrentTenant { get; set; }
-        public virtual Properties Property { get; set; }
-        public virtual ICollection<RentTransactions> RentTransactions { get; set; }
-        public virtual ICollection<Users> Users { get; set; }
+        public virtual Tenant CurrentTenant { get; set; }
+        public virtual Property Property { get; set; }
+        public virtual ICollection<RentTransaction> RentTransactions { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

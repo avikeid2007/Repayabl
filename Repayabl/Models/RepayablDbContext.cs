@@ -15,14 +15,14 @@ namespace Repayabl.Models
         {
         }
 
-        public virtual DbSet<FamilyDetails> FamilyDetails { get; set; }
-        public virtual DbSet<Properties> Properties { get; set; }
-        public virtual DbSet<RentTransactions> RentTransactions { get; set; }
-        public virtual DbSet<Rooms> Rooms { get; set; }
-        public virtual DbSet<TenantDocuments> TenantDocuments { get; set; }
-        public virtual DbSet<TenantOutstandings> TenantOutstandings { get; set; }
-        public virtual DbSet<Tenants> Tenants { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<FamilyDetail> FamilyDetails { get; set; }
+        public virtual DbSet<Property> Properties { get; set; }
+        public virtual DbSet<RentTransaction> RentTransactions { get; set; }
+        public virtual DbSet<Room> Rooms { get; set; }
+        public virtual DbSet<TenantDocument> TenantDocuments { get; set; }
+        public virtual DbSet<TenantOutstanding> TenantOutstandings { get; set; }
+        public virtual DbSet<Tenant> Tenants { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -35,7 +35,7 @@ namespace Repayabl.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<FamilyDetails>(entity =>
+            modelBuilder.Entity<FamilyDetail>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
@@ -81,7 +81,7 @@ namespace Repayabl.Models
 
             });
 
-            modelBuilder.Entity<Properties>(entity =>
+            modelBuilder.Entity<Property>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
                 entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
@@ -113,7 +113,7 @@ namespace Repayabl.Models
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<RentTransactions>(entity =>
+            modelBuilder.Entity<RentTransaction>(entity =>
             {
                 entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
                 entity.HasIndex(e => e.PaidBy)
@@ -153,7 +153,7 @@ namespace Repayabl.Models
                     .HasConstraintName("FK_103");
             });
 
-            modelBuilder.Entity<Rooms>(entity =>
+            modelBuilder.Entity<Room>(entity =>
             {
                 entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
                 entity.HasIndex(e => e.LastPaidBillId)
@@ -185,7 +185,7 @@ namespace Repayabl.Models
                     .HasConstraintName("FK_37");
             });
 
-            modelBuilder.Entity<TenantDocuments>(entity =>
+            modelBuilder.Entity<TenantDocument>(entity =>
             {
                 entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
                 entity.Property(e => e.Id).ValueGeneratedNever();
@@ -218,7 +218,7 @@ namespace Repayabl.Models
                     .HasConstraintName("FK_117");
             });
 
-            modelBuilder.Entity<TenantOutstandings>(entity =>
+            modelBuilder.Entity<TenantOutstanding>(entity =>
             {
                 entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
                 entity.HasIndex(e => e.TenantId)
@@ -237,7 +237,7 @@ namespace Repayabl.Models
                     .HasConstraintName("FK_144");
             });
 
-            modelBuilder.Entity<Tenants>(entity =>
+            modelBuilder.Entity<Tenant>(entity =>
             {
                 entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
                 entity.Property(e => e.Id).ValueGeneratedNever();
@@ -271,7 +271,7 @@ namespace Repayabl.Models
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<Users>(entity =>
+            modelBuilder.Entity<User>(entity =>
             {
                 entity.Property(b => b.Created).HasDefaultValueSql("getdate()");
                 entity.HasIndex(e => e.PropertyId)

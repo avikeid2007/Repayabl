@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace Repayabl.Models
 {
-    public partial class Properties : Auditor
+    public partial class Property : Auditor
     {
-        public Properties()
+        public Property()
         {
-            Rooms = new HashSet<Rooms>();
-            Users = new HashSet<Users>();
+            Rooms = new HashSet<Room>();
+            Users = new HashSet<User>();
         }
 
         public Guid Id { get; set; }
@@ -21,7 +21,7 @@ namespace Repayabl.Models
         public int FloorCount { get; set; }
         public string Remarks { get; set; }
 
-        public virtual ICollection<Rooms> Rooms { get; set; }
-        public virtual ICollection<Users> Users { get; set; }
+        public virtual ICollection<Room> Rooms { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

@@ -20,7 +20,21 @@ namespace Repayabl.Controllers
         //[HttpGet]
         //public ActionResult GetMany(string UserName,string Password)
         //{ 
-        
+
         //}
+        [HttpPost]
+        public ActionResult<Models.DTOs.User> Login(Models.DTOs.User user)
+        {
+            if (user != null)
+            {
+                var authUser = Context.Users.Single(x => x.UserName.Equals(user.UserName) && x.Password.Equals(user.Password));
+                if (authUser != null)
+                {
+                    return Ok();
+                }
+                return NotFound();
+            }
+            return BadRequest();
+        }
     }
 }
