@@ -10,8 +10,8 @@ using Repayabl.Models;
 namespace Repayabl.Migrations
 {
     [DbContext(typeof(RepayablDbContext))]
-    [Migration("20191124200403_AddRelationshipUserAndProperty")]
-    partial class AddRelationshipUserAndProperty
+    [Migration("20191125121411_CreateDatabase")]
+    partial class CreateDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,7 +24,9 @@ namespace Repayabl.Migrations
             modelBuilder.Entity("Repayabl.Models.FamilyDetail", b =>
                 {
                     b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("(newsequentialid())");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -43,9 +45,10 @@ namespace Repayabl.Migrations
                         .IsUnicode(false);
 
                     b.Property<DateTime?>("Created")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
+                        .HasDefaultValueSql("(getdate())");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -99,7 +102,9 @@ namespace Repayabl.Migrations
             modelBuilder.Entity("Repayabl.Models.Property", b =>
                 {
                     b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("(newsequentialid())");
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -118,9 +123,10 @@ namespace Repayabl.Migrations
                         .IsUnicode(false);
 
                     b.Property<DateTime?>("Created")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
+                        .HasDefaultValueSql("(getdate())");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -139,9 +145,6 @@ namespace Repayabl.Migrations
                         .HasColumnType("varchar(50)")
                         .HasMaxLength(50)
                         .IsUnicode(false);
-
-                    b.Property<Guid>("PropertyId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Remarks")
                         .IsRequired()
@@ -171,7 +174,9 @@ namespace Repayabl.Migrations
             modelBuilder.Entity("Repayabl.Models.RentTransaction", b =>
                 {
                     b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("(newsequentialid())");
 
                     b.Property<DateTime>("BillDate")
                         .HasColumnType("datetime");
@@ -189,9 +194,10 @@ namespace Repayabl.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("Created")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
+                        .HasDefaultValueSql("(getdate())");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -212,7 +218,7 @@ namespace Repayabl.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("PaidAmount")
-                        .HasColumnType("numeric(8, 2)");
+                        .HasColumnType("numeric(15, 2)");
 
                     b.Property<Guid?>("PaidBy")
                         .HasColumnType("uniqueidentifier");
@@ -224,13 +230,13 @@ namespace Repayabl.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("RentAmount")
-                        .HasColumnType("numeric(8, 2)");
+                        .HasColumnType("numeric(15, 2)");
 
                     b.Property<Guid>("RoomId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("TotalAmount")
-                        .HasColumnType("numeric(8, 2)");
+                        .HasColumnType("numeric(15, 2)");
 
                     b.Property<int>("TotalPaybleMonth")
                         .HasColumnType("int");
@@ -249,21 +255,24 @@ namespace Repayabl.Migrations
             modelBuilder.Entity("Repayabl.Models.Room", b =>
                 {
                     b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("(newsequentialid())");
 
                     b.Property<DateTime?>("Created")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
+                        .HasDefaultValueSql("(getdate())");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("CurrentTenantId")
+                    b.Property<Guid?>("CurrentTenantId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("ElectRate")
-                        .HasColumnType("numeric(2, 2)");
+                        .HasColumnType("numeric(10, 2)");
 
                     b.Property<DateTime?>("LastBillPaidDate")
                         .HasColumnType("datetime");
@@ -278,7 +287,7 @@ namespace Repayabl.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("MonthlyRent")
-                        .HasColumnType("numeric(8, 2)");
+                        .HasColumnType("numeric(15, 2)");
 
                     b.Property<Guid>("PropertyId")
                         .HasColumnType("uniqueidentifier");
@@ -307,7 +316,9 @@ namespace Repayabl.Migrations
             modelBuilder.Entity("Repayabl.Models.Tenant", b =>
                 {
                     b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("(newsequentialid())");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -326,9 +337,10 @@ namespace Repayabl.Migrations
                         .IsUnicode(false);
 
                     b.Property<DateTime?>("Created")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
+                        .HasDefaultValueSql("(getdate())");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -375,12 +387,15 @@ namespace Repayabl.Migrations
             modelBuilder.Entity("Repayabl.Models.TenantDocument", b =>
                 {
                     b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("(newsequentialid())");
 
                     b.Property<DateTime?>("Created")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
+                        .HasDefaultValueSql("(getdate())");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -431,12 +446,15 @@ namespace Repayabl.Migrations
             modelBuilder.Entity("Repayabl.Models.TenantOutstanding", b =>
                 {
                     b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("(newsequentialid())");
 
                     b.Property<DateTime?>("Created")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
+                        .HasDefaultValueSql("(getdate())");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -451,10 +469,10 @@ namespace Repayabl.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal?>("TotalAdvance")
-                        .HasColumnType("numeric(8, 2)");
+                        .HasColumnType("numeric(15, 2)");
 
                     b.Property<decimal?>("TotalPending")
-                        .HasColumnType("numeric(8, 2)");
+                        .HasColumnType("numeric(15, 2)");
 
                     b.HasKey("Id");
 
@@ -467,12 +485,15 @@ namespace Repayabl.Migrations
             modelBuilder.Entity("Repayabl.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("(newsequentialid())");
 
                     b.Property<DateTime?>("Created")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
+                        .HasDefaultValueSql("(getdate())");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -549,8 +570,7 @@ namespace Repayabl.Migrations
                     b.HasOne("Repayabl.Models.Tenant", "CurrentTenant")
                         .WithMany("Rooms")
                         .HasForeignKey("CurrentTenantId")
-                        .HasConstraintName("FK_52")
-                        .IsRequired();
+                        .HasConstraintName("FK_52");
 
                     b.HasOne("Repayabl.Models.Property", "Property")
                         .WithMany("Rooms")

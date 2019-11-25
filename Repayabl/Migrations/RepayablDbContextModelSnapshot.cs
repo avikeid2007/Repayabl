@@ -24,7 +24,7 @@ namespace Repayabl.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWSEQUENTIALID( )");
+                        .HasDefaultValueSql("(newsequentialid())");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -43,9 +43,10 @@ namespace Repayabl.Migrations
                         .IsUnicode(false);
 
                     b.Property<DateTime?>("Created")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
+                        .HasDefaultValueSql("(getdate())");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -101,7 +102,7 @@ namespace Repayabl.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWSEQUENTIALID( )");
+                        .HasDefaultValueSql("(newsequentialid())");
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -120,9 +121,10 @@ namespace Repayabl.Migrations
                         .IsUnicode(false);
 
                     b.Property<DateTime?>("Created")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
+                        .HasDefaultValueSql("(getdate())");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -172,7 +174,7 @@ namespace Repayabl.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWSEQUENTIALID( )");
+                        .HasDefaultValueSql("(newsequentialid())");
 
                     b.Property<DateTime>("BillDate")
                         .HasColumnType("datetime");
@@ -190,9 +192,10 @@ namespace Repayabl.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("Created")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
+                        .HasDefaultValueSql("(getdate())");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -213,7 +216,7 @@ namespace Repayabl.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("PaidAmount")
-                        .HasColumnType("numeric(8, 2)");
+                        .HasColumnType("numeric(15, 2)");
 
                     b.Property<Guid?>("PaidBy")
                         .HasColumnType("uniqueidentifier");
@@ -225,13 +228,13 @@ namespace Repayabl.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("RentAmount")
-                        .HasColumnType("numeric(8, 2)");
+                        .HasColumnType("numeric(15, 2)");
 
                     b.Property<Guid>("RoomId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("TotalAmount")
-                        .HasColumnType("numeric(8, 2)");
+                        .HasColumnType("numeric(15, 2)");
 
                     b.Property<int>("TotalPaybleMonth")
                         .HasColumnType("int");
@@ -252,12 +255,13 @@ namespace Repayabl.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWSEQUENTIALID( )");
+                        .HasDefaultValueSql("(newsequentialid())");
 
                     b.Property<DateTime?>("Created")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
+                        .HasDefaultValueSql("(getdate())");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -312,7 +316,7 @@ namespace Repayabl.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWSEQUENTIALID( )");
+                        .HasDefaultValueSql("(newsequentialid())");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -331,9 +335,10 @@ namespace Repayabl.Migrations
                         .IsUnicode(false);
 
                     b.Property<DateTime?>("Created")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
+                        .HasDefaultValueSql("(getdate())");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -382,12 +387,13 @@ namespace Repayabl.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWSEQUENTIALID( )");
+                        .HasDefaultValueSql("(newsequentialid())");
 
                     b.Property<DateTime?>("Created")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
+                        .HasDefaultValueSql("(getdate())");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -440,12 +446,13 @@ namespace Repayabl.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWSEQUENTIALID( )");
+                        .HasDefaultValueSql("(newsequentialid())");
 
                     b.Property<DateTime?>("Created")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
+                        .HasDefaultValueSql("(getdate())");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -460,10 +467,10 @@ namespace Repayabl.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal?>("TotalAdvance")
-                        .HasColumnType("numeric(8, 2)");
+                        .HasColumnType("numeric(15, 2)");
 
                     b.Property<decimal?>("TotalPending")
-                        .HasColumnType("numeric(8, 2)");
+                        .HasColumnType("numeric(15, 2)");
 
                     b.HasKey("Id");
 
@@ -478,12 +485,13 @@ namespace Repayabl.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWSEQUENTIALID( )");
+                        .HasDefaultValueSql("(newsequentialid())");
 
                     b.Property<DateTime?>("Created")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
+                        .HasDefaultValueSql("(getdate())");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
