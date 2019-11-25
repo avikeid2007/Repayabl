@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace Repayabl.Models
 {
     public abstract class Auditor
     {
+        [Required]
         public DateTime? Created { get; set; }
         public string CreatedBy { get; set; }
         public DateTime? Modifed { get; set; }
