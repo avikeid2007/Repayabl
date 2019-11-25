@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repayabl.Models;
 
 namespace Repayabl.Migrations
 {
     [DbContext(typeof(RepayablDbContext))]
-    partial class RepayablDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191124185318_CreateDb")]
+    partial class CreateDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,9 +24,7 @@ namespace Repayabl.Migrations
             modelBuilder.Entity("Repayabl.Models.FamilyDetail", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWSEQUENTIALID( )");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -99,9 +99,7 @@ namespace Repayabl.Migrations
             modelBuilder.Entity("Repayabl.Models.Property", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWSEQUENTIALID( )");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -154,15 +152,10 @@ namespace Repayabl.Migrations
                         .HasMaxLength(50)
                         .IsUnicode(false);
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int>("Zip")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Properties");
                 });
@@ -170,9 +163,7 @@ namespace Repayabl.Migrations
             modelBuilder.Entity("Repayabl.Models.RentTransaction", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWSEQUENTIALID( )");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("BillDate")
                         .HasColumnType("datetime");
@@ -250,9 +241,7 @@ namespace Repayabl.Migrations
             modelBuilder.Entity("Repayabl.Models.Room", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWSEQUENTIALID( )");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("Created")
                         .ValueGeneratedOnAdd()
@@ -262,11 +251,11 @@ namespace Repayabl.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("CurrentTenantId")
+                    b.Property<Guid>("CurrentTenantId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("ElectRate")
-                        .HasColumnType("numeric(10, 2)");
+                        .HasColumnType("numeric(2, 2)");
 
                     b.Property<DateTime?>("LastBillPaidDate")
                         .HasColumnType("datetime");
@@ -281,7 +270,7 @@ namespace Repayabl.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("MonthlyRent")
-                        .HasColumnType("numeric(15, 2)");
+                        .HasColumnType("numeric(8, 2)");
 
                     b.Property<Guid>("PropertyId")
                         .HasColumnType("uniqueidentifier");
@@ -310,9 +299,7 @@ namespace Repayabl.Migrations
             modelBuilder.Entity("Repayabl.Models.Tenant", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWSEQUENTIALID( )");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -380,9 +367,7 @@ namespace Repayabl.Migrations
             modelBuilder.Entity("Repayabl.Models.TenantDocument", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWSEQUENTIALID( )");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("Created")
                         .ValueGeneratedOnAdd()
@@ -438,9 +423,7 @@ namespace Repayabl.Migrations
             modelBuilder.Entity("Repayabl.Models.TenantOutstanding", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWSEQUENTIALID( )");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("Created")
                         .ValueGeneratedOnAdd()
@@ -476,9 +459,7 @@ namespace Repayabl.Migrations
             modelBuilder.Entity("Repayabl.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWSEQUENTIALID( )");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("Created")
                         .ValueGeneratedOnAdd()
@@ -488,17 +469,11 @@ namespace Repayabl.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsAuth")
                         .HasColumnType("bit");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("Modifed")
                         .HasColumnType("datetime2");
@@ -506,10 +481,19 @@ namespace Repayabl.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Otp")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("varchar(max)")
                         .IsUnicode(false);
+
+                    b.Property<Guid?>("PropertyId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("RoomId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("UserName")
                         .IsRequired()
@@ -518,6 +502,12 @@ namespace Repayabl.Migrations
                         .IsUnicode(false);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PropertyId")
+                        .HasName("fkIdx_122");
+
+                    b.HasIndex("RoomId")
+                        .HasName("fkIdx_28");
 
                     b.ToTable("Users");
                 });
@@ -528,16 +518,6 @@ namespace Repayabl.Migrations
                         .WithMany("FamilyDetails")
                         .HasForeignKey("TenantId")
                         .HasConstraintName("FK_79")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Repayabl.Models.Property", b =>
-                {
-                    b.HasOne("Repayabl.Models.User", "User")
-                        .WithMany("Properties")
-                        .HasForeignKey("UserId")
-                        .HasConstraintName("FK_137")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -560,7 +540,8 @@ namespace Repayabl.Migrations
                     b.HasOne("Repayabl.Models.Tenant", "CurrentTenant")
                         .WithMany("Rooms")
                         .HasForeignKey("CurrentTenantId")
-                        .HasConstraintName("FK_52");
+                        .HasConstraintName("FK_52")
+                        .IsRequired();
 
                     b.HasOne("Repayabl.Models.Property", "Property")
                         .WithMany("Rooms")
@@ -585,6 +566,19 @@ namespace Repayabl.Migrations
                         .HasForeignKey("TenantId")
                         .HasConstraintName("FK_144")
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Repayabl.Models.User", b =>
+                {
+                    b.HasOne("Repayabl.Models.Property", "Property")
+                        .WithMany("Users")
+                        .HasForeignKey("PropertyId")
+                        .HasConstraintName("FK_122");
+
+                    b.HasOne("Repayabl.Models.Room", "Room")
+                        .WithMany("Users")
+                        .HasForeignKey("RoomId")
+                        .HasConstraintName("FK_28");
                 });
 #pragma warning restore 612, 618
         }
