@@ -27,6 +27,7 @@ namespace Repayabl
             services.AddSwaggerDocument(o =>
             {
                 o.Title = "JMS API";
+
             }); 
 
         }
