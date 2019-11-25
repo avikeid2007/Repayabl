@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -22,25 +21,22 @@ namespace Repayabl
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<RepayablDbContext>(op => op.UseSqlServer(Configuration.GetConnectionString("Database")));
+
             services.AddControllers();
-            services.AddSwaggerDocument(o =>
-            {
-                o.Title = "JMS API";
-            });
         }
-       
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, RepayablDbContext context)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            context.Database.Migrate();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
             app.UseHttpsRedirection();
+
             app.UseRouting();
-            app.UseOpenApi();
-            app.UseSwaggerUi3();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
