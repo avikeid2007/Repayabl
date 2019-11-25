@@ -25,7 +25,7 @@ namespace Repayabl
             services.AddSwaggerDocument(o =>
             {
                 o.Title = "JMS API";
-            }); 
+            });   
         }
        
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
