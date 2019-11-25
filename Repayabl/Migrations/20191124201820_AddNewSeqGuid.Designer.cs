@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repayabl.Models;
 
 namespace Repayabl.Migrations
 {
     [DbContext(typeof(RepayablDbContext))]
-    partial class RepayablDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191124201820_AddNewSeqGuid")]
+    partial class AddNewSeqGuid
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -262,11 +264,11 @@ namespace Repayabl.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("CurrentTenantId")
+                    b.Property<Guid>("CurrentTenantId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("ElectRate")
-                        .HasColumnType("numeric(10, 2)");
+                        .HasColumnType("numeric(2, 2)");
 
                     b.Property<DateTime?>("LastBillPaidDate")
                         .HasColumnType("datetime");
@@ -281,7 +283,7 @@ namespace Repayabl.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("MonthlyRent")
-                        .HasColumnType("numeric(15, 2)");
+                        .HasColumnType("numeric(8, 2)");
 
                     b.Property<Guid>("PropertyId")
                         .HasColumnType("uniqueidentifier");
@@ -560,7 +562,8 @@ namespace Repayabl.Migrations
                     b.HasOne("Repayabl.Models.Tenant", "CurrentTenant")
                         .WithMany("Rooms")
                         .HasForeignKey("CurrentTenantId")
-                        .HasConstraintName("FK_52");
+                        .HasConstraintName("FK_52")
+                        .IsRequired();
 
                     b.HasOne("Repayabl.Models.Property", "Property")
                         .WithMany("Rooms")
