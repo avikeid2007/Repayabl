@@ -1,4 +1,6 @@
 ﻿@page "/login"
+@using RepayablWebApp.Data.Repositories
+@inject IUserClient _userClient
 <!-- Page Loader -->
 
 
@@ -9,28 +11,29 @@
                 <div class="login-img">
                     <img class="img-fluid" src="assets/images/login-img.png" />
                 </div>
-                <div class="form-auth-small" >
+                <div class="form-auth-small">
                     <div class="mb-3">
                         <p class="lead">Login to your account</p>
                     </div>
                     <div class="form-group">
                         <label for="signin-email" class="control-label sr-only">Email</label>
-                        <input type="email" class="form-control round" id="signin-email" value="user@domain.com" placeholder="Email">
+                        <input class="form-control round" id="signin-email" @bind="SelectedUser.UserName" placeholder="Email" />
                     </div>
                     <div class="form-group">
                         <label for="signin-password" class="control-label sr-only">Password</label>
-                        <input type="password" class="form-control round" id="signin-password" value="thisisthepassword" placeholder="Password">
+                        <input class="form-control round" id="signin-password" @bind="SelectedUser.Password" placeholder="Password" />
                     </div>
                     <div class="form-group clearfix">
                         <label class="fancy-checkbox element-left">
                             <input type="checkbox">
-                            <span>Remember me @currentCount</span>
+                            <span>Remember me</span>
                         </label>
                     </div>
-                    <button type="submit" @onclick="loginUser" class="btn btn-primary btn-round btn-block">LOGIN</button>
+                    <button type="submit" @onclick="loginUserAsync" class="btn btn-primary btn-round btn-block">LOGIN</button>
                     <div class="mt-4">
                         <span class="helper-text m-b-10"><i class="fa fa-lock"></i> <a href="page-forgot-password.html">Forgot password?</a></span>
-                        <span>Don't have an account? <a href="page-register.html">Register</a></span>
+                        <span>Don't have an account? <a href="Register">Register</a></span>
+                        <span>@SuccessMsg</span>
                     </div>
                 </div>
                 <div class="pattern">
@@ -49,9 +52,15 @@
 <!-- END WRAPPER -->
 
 @code {
-     int currentCount = 0;
-    void loginUser()
+    public User SelectedUser { get; set; } = new User();
+    int currentCount = 0;
+    string SuccessMsg = string.Empty;
+    public async Task loginUserAsync()
     {
-        currentCount++;
+        var authUser= await _userClient.LoginAsync(SelectedUser);
+        if(authUser!=null)
+        {
+            SuccessMsg = "Login Successful";
+        }
     }
 }

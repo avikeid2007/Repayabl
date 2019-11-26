@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="assets/css/site.min.css">
 </head>
 <body class="theme-cyan font-montserrat">
-    @*<div class="page-loader-wrapper">
+    <div class="page-loader-wrapper">
         <div class="loader">
             <div class="bar1"></div>
             <div class="bar2"></div>
@@ -30,7 +30,7 @@
             <div class="bar4"></div>
             <div class="bar5"></div>
         </div>
-    </div>*@
+    </div>
     <app>
         @(await Html.RenderComponentAsync<App>(RenderMode.ServerPrerendered))
     </app>
