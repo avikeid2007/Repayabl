@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repayabl", "Repayabl\Repayabl.csproj", "{455BAA9D-F652-4EBC-96B7-D947113EE542}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepayablWebApp", "RepayablWebApp\RepayablWebApp.csproj", "{88A239A1-712C-4E30-88C2-F0ACB69ACDB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepayablWebApp", "RepayablWebApp\RepayablWebApp.csproj", "{88A239A1-712C-4E30-88C2-F0ACB69ACDB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
