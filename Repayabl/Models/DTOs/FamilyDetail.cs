@@ -4,10 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Repayabl.Models.DTOs
 {
-    public class Tenant
+    public class FamilyDetail
     {
         [Key]
         public Guid Id { get; set; }
+
         [Required]
         [StringLength(50)]
         public string FirstName { get; set; }
@@ -26,6 +27,8 @@ namespace Repayabl.Models.DTOs
         [StringLength(50)]
         public string Country { get; set; }
         public int? Zip { get; set; }
-        public int? FamilyMamberCount { get; set; }
+        public Guid TenantId { get; set; }
+        [StringLength(50)]
+        public string Relationship { get; set; }
     }
 }
