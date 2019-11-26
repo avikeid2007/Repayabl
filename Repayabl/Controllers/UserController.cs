@@ -24,7 +24,7 @@ namespace Repayabl.Controllers
         {
             if (user != null)
             {
-                var authUser = Context.Users.Single(x => x.UserName.Equals(user.UserName) && x.Password.Equals(user.Password));
+                var authUser = Context.Users.Single(x => x.UserName.Equals(user.UserName) && x.Password.Equals(user.Password) && x.IsAuth && x.IsActive);
                 if (authUser != null)
                 {
                     return Ok(ConvertModels<Models.DTOs.User,User>(authUser));
@@ -39,7 +39,7 @@ namespace Repayabl.Controllers
             if (user != null)
             {
                 var dbobj = ConvertModels<User, Models.DTOs.User>(user);
-                MapCreated(dbobj, "");
+                MapCreated(dbobj, "Admin");
                 await Context.Users.AddAsync(dbobj);
                 await Context.SaveChangesAsync();
                 return Ok();
