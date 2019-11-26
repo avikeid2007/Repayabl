@@ -102,7 +102,7 @@ namespace Repayabl.Controllers
             return Ok();
         }
         [HttpPut("{propertyid}/Room/{id}")]
-        public async Task<ActionResult> PutAsync(Guid propertyid, Guid id, Models.DTOs.Property property)
+        public async Task<ActionResult> UpdateRoomAsync(Guid propertyid, Guid id, Models.DTOs.Property property)
         {
             var dbObj = await Context.Rooms.SingleOrDefaultAsync(x => x.Id == id && x.PropertyId == propertyid);
             if (dbObj == null)
@@ -116,7 +116,7 @@ namespace Repayabl.Controllers
             return Ok();
         }
         [HttpGet("{propertyid}/Room/{id}")]
-        public async Task<ActionResult<Models.DTOs.Room>> GetAsync(Guid propertyid, Guid id)
+        public async Task<ActionResult<Models.DTOs.Room>> GetRoomAsync(Guid propertyid, Guid id)
         {
             var room = await Context.Rooms.SingleOrDefaultAsync(x=>x.Id==id && x.PropertyId== propertyid);
             if (room == null)

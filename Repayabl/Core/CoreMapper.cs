@@ -17,6 +17,12 @@ namespace Repayabl.Core
                  cfg.CreateMap<Models.DTOs.Room, Room>();
                  cfg.CreateMap<Tenant, Models.DTOs.Tenant>();
                  cfg.CreateMap<Models.DTOs.Tenant, Tenant>();
+                 cfg.CreateMap<FamilyDetail, Models.DTOs.FamilyDetail>();
+                 cfg.CreateMap<Models.DTOs.FamilyDetail, FamilyDetail>();
+                 cfg.CreateMap<TenantDocument, Models.DTOs.TenantDocument>();
+                 cfg.CreateMap<Models.DTOs.TenantDocument, TenantDocument>();
+                 cfg.CreateMap<TenantOutstanding, Models.DTOs.TenantOutstanding>();
+                 cfg.CreateMap<Models.DTOs.TenantOutstanding, TenantOutstanding>();
              });
             return new Mapper(configuration);
         }
