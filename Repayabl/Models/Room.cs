@@ -14,7 +14,7 @@ namespace Repayabl.Models
 
         [Key]
         public Guid Id { get; set; }
-     
+
         [Required]
         [StringLength(10)]
         public string RoomNo { get; set; }
@@ -37,5 +37,8 @@ namespace Repayabl.Models
         public virtual Property Property { get; set; }
         [InverseProperty("Room")]
         public virtual ICollection<RentTransaction> RentTransactions { get; set; }
+        [InverseProperty("Room")]
+        public virtual ICollection<RoomAllotment> RoomAllotments { get; set; }
     }
 }
+

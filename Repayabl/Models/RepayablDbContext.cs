@@ -17,6 +17,7 @@ namespace Repayabl.Models
         public virtual DbSet<Property> Properties { get; set; }
         public virtual DbSet<RentTransaction> RentTransactions { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
+        public virtual DbSet<RoomAllotment> RoomAllotments { get; set; }
         public virtual DbSet<TenantDocument> TenantDocuments { get; set; }
         public virtual DbSet<TenantOutstanding> TenantOutstandings { get; set; }
         public virtual DbSet<Tenant> Tenants { get; set; }
@@ -110,33 +111,41 @@ namespace Repayabl.Models
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_103");
             });
+            modelBuilder.Entity<RoomAllotment>(entity =>
+            {
+                entity.HasIndex(e => e.TenantId);
+                entity.HasIndex(e => e.RoomId);
+                entity.Property(e => e.Id).HasDefaultValueSql("(newsequentialid())");
+                entity.Property(e => e.Created).HasDefaultValueSql("(getdate())");
+                entity.Property(e => e.AllotmentDate).HasDefaultValueSql("(getdate())");
+            });
 
             modelBuilder.Entity<Room>(entity =>
-            {
-                entity.HasIndex(e => e.CurrentTenantId);
+        {
+            entity.HasIndex(e => e.CurrentTenantId);
 
-                entity.HasIndex(e => e.LastPaidBillId)
-                    .HasName("fkIdx_134");
+            entity.HasIndex(e => e.LastPaidBillId)
+                .HasName("fkIdx_134");
 
-                entity.HasIndex(e => e.PropertyId);
+            entity.HasIndex(e => e.PropertyId);
 
-                entity.Property(e => e.Id).HasDefaultValueSql("(newsequentialid())");
+            entity.Property(e => e.Id).HasDefaultValueSql("(newsequentialid())");
 
-                entity.Property(e => e.Created).HasDefaultValueSql("(getdate())");
+            entity.Property(e => e.Created).HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.RoomNo).IsUnicode(false);
+            entity.Property(e => e.RoomNo).IsUnicode(false);
 
-                entity.HasOne(d => d.CurrentTenant)
-                    .WithMany(p => p.Rooms)
-                    .HasForeignKey(d => d.CurrentTenantId)
-                    .HasConstraintName("FK_52");
+            entity.HasOne(d => d.CurrentTenant)
+                .WithMany(p => p.Rooms)
+                .HasForeignKey(d => d.CurrentTenantId)
+                .HasConstraintName("FK_52");
 
-                entity.HasOne(d => d.Property)
-                    .WithMany(p => p.Rooms)
-                    .HasForeignKey(d => d.PropertyId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_37");
-            });
+            entity.HasOne(d => d.Property)
+                .WithMany(p => p.Rooms)
+                .HasForeignKey(d => d.PropertyId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_37");
+        });
 
             modelBuilder.Entity<TenantDocument>(entity =>
             {
