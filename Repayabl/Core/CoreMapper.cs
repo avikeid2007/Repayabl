@@ -11,6 +11,12 @@ namespace Repayabl.Core
              {
                  cfg.CreateMap<User, Models.DTOs.User>();
                  cfg.CreateMap<Models.DTOs.User, User>();
+                 cfg.CreateMap<Property, Models.DTOs.Property>();
+                 cfg.CreateMap<Models.DTOs.Property, Property>();
+                 cfg.CreateMap<Room, Models.DTOs.Room>();
+                 cfg.CreateMap<Models.DTOs.Room, Room>();
+                 cfg.CreateMap<Tenant, Models.DTOs.Tenant>();
+                 cfg.CreateMap<Models.DTOs.Tenant, Tenant>();
              });
             return new Mapper(configuration);
         }
