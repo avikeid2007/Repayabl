@@ -1,0 +1,305 @@
+﻿@page "/Dashboard"
+<!-- Theme Setting -->
+
+
+<!-- Overlay For Sidebars -->
+<div class="overlay"></div>
+
+<div id="wrapper">
+    <nav class="navbar top-navbar">
+        <div class="container-fluid">
+
+            <div class="navbar-left">
+
+
+            </div>
+
+            <div class="navbar-right">
+                <div class="user-account">
+                    <div class="user_div">
+                        <img src="../assets/images/user.png" class="user-photo" alt="User Profile Picture">
+                    </div>
+                    <div class="dropdown">
+                        <span>Welcome,</span>
+                        <a href="javascript:void(0);" class="dropdown-toggle user-name" data-toggle="dropdown"><strong>Louis Pierce</strong></a>
+                        <ul class="dropdown-menu dropdown-menu-right account vivify flipInY">
+                            <li><a href="page-profile.html"><i class="icon-user"></i>My Profile</a></li>
+                            <li><a href="app-inbox.html"><i class="icon-envelope-open"></i>Messages</a></li>
+                            <li><a href="javascript:void(0);"><i class="icon-settings"></i>Settings</a></li>
+                            <li class="divider"></li>
+                            <li><a href="page-login.html"><i class="icon-power"></i>Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="progress-container"><div class="progress-bar" id="myBar"></div></div>
+    </nav>
+
+    <div id="left-sidebar" class="sidebar">
+        <div class="navbar-brand">
+            <a href="index.html"><img src="../assets/images/icon.svg" alt="Oculux Logo" class="img-fluid logo"><span>Oculux</span></a>
+            <button type="button" class="btn-toggle-offcanvas btn btn-sm float-right"><i class="lnr lnr-menu icon-close"></i></button>
+        </div>
+        <div class="sidebar-scroll">
+
+            <nav id="left-sidebar-nav" class="sidebar-nav">
+                <ul id="main-menu" class="metismenu">
+                    <li class="header">Main</li>
+                    <li class="active open"><a href="index2.html"><i class="icon-speedometer"></i><span>Dashboard</span></a></li>
+                    <li>
+                        <a href="#" class="has-arrow"><i class="icon-user-grid"></i><span>Properties</span></a>
+                        <ul>
+                            <li><a href="dr-all.html">All Properties</a></li>
+                            <li><a href="dr-add.html">Add Property</a></li>
+                            <li><a href="dr-profile.html">Property Profile</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="has-arrow"><i class="icon-user-follow"></i><span>Rooms</span></a>
+                        <ul>
+                            <li><a href="dr-all.html">All Rooms</a></li>
+                            <li><a href="dr-add.html">Add Room</a></li>
+                            <li><a href="dr-profile.html">Room Profile</a></li>
+                            <li><a href="dr-profile.html">Allot a Room</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="has-arrow"><i class="icon-user-follow"></i><span>Tenant</span></a>
+                        <ul>
+                            <li><a href="dr-all.html">All Tenant</a></li>
+                            <li><a href="dr-add.html">Add Tenant</a></li>
+                            <li><a href="dr-profile.html">Tenant Profile</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="has-arrow"><i class="icon-user-follow"></i><span>Tenant Family</span></a>
+                        <ul>
+                            <li><a href="dr-all.html">All Members</a></li>
+                            <li><a href="dr-add.html">Add New Member</a></li>
+                            <li><a href="dr-profile.html">Members Profile</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="has-arrow"><i class="icon-user-follow"></i><span>Tenant Documents</span></a>
+                        <ul>
+                            <li><a href="dr-all.html">All Documents</a></li>
+                            <li><a href="dr-add.html">Add Document</a></li>
+                            <li><a href="dr-profile.html">Document Details</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <div class="row clearfix">
+                    <div class="col-md-6 col-sm-12">
+                        <h1>Dashboard</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="../html/index.html">Oculux</a></li>
+                                <li class="breadcrumb-item"><a href="index.html">Hospital</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-md-6 col-sm-12 text-right hidden-xs">
+                        <a href="javascript:void(0);" class="btn btn-sm btn-primary" title="">Create Campaign</a>
+                        <a href="https://themeforest.net/item/oculux-bootstrap-4x-admin-dashboard-clean-modern-ui-kit/23091507" class="btn btn-sm btn-success" title="Themeforest"><i class="icon-basket"></i> Buy Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row clearfix">
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                    <div class="card">
+                        <div class="body">
+                            <h6 class="mb-4"><i class="fa fa-hospital-o"></i> Total Beds</h6>
+                            <div class="card-value text-danger float-left mr-3 pr-2 border-right">200</div>
+                            <div class="font-12">Delux Room <span class="float-right">55</span></div>
+                            <div class="font-12">General Ward <span class="float-right">105</span></div>
+                            <div class="font-12">VIP Room <span class="float-right">40</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                    <div class="card">
+                        <div class="body">
+                            <h6 class="mb-4"><i class="fa fa-users"></i> Total Patients</h6>
+                            <div class="card-value text-info float-left mr-3 pr-2 border-right">150</div>
+                            <div class="font-12">Brain Tumor <span class="float-right">35</span></div>
+                            <div class="font-12">Viral Infection <span class="float-right">105</span></div>
+                            <div class="font-12">Cancer <span class="float-right">10</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                    <div class="card">
+                        <div class="body">
+                            <h6 class="mb-4"><i class="fa fa-hospital-o"></i> Total Beds</h6>
+                            <div class="card-value text-green float-left mr-3 pr-2 border-right">175</div>
+                            <div class="font-12">Delux Room <span class="float-right">55</span></div>
+                            <div class="font-12">General Ward <span class="float-right">105</span></div>
+                            <div class="font-12">VIP Room <span class="float-right">40</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                    <div class="card">
+                        <div class="body">
+                            <h6 class="mb-4"><i class="fa fa-hospital-o"></i> Total Beds</h6>
+                            <div class="card-value text-orange float-left mr-3 pr-2 border-right">135</div>
+                            <div class="font-12">Delux Room <span class="float-right">55</span></div>
+                            <div class="font-12">General Ward <span class="float-right">105</span></div>
+                            <div class="font-12">VIP Room <span class="float-right">40</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-7 col-md-12 col-sm-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>Admitted Patient</h2>
+                        </div>
+                        <div class="body">
+                            <div class="row clearfix">
+                                <div class="col-lg-4 col-md-12">
+                                    <div class="input-group mb-3">
+                                        <input data-provide="datepicker" data-date-autoclose="true" placeholder="From Date" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-12">
+                                    <div class="input-group mb-3">
+                                        <input data-provide="datepicker" data-date-autoclose="true" placeholder="To Date" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-12">
+                                    <button class="btn btn-info btn-block" type="button">Search</button>
+                                </div>
+                            </div>
+                            <div id="admitted-patient" class="mt-4" style="height: 300px"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-12 col-sm-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>Patient Discharged & Readmitted</h2>
+                        </div>
+                        <div class="body">
+                            <div id="chart-bar-rotated" style="height: 375px"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-4 col-md-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>By Gender</h2>
+                        </div>
+                        <div class="body">
+                            <div class="d-flex bd-highlight mb-3 text-center">
+                                <div class="flex-fill bd-highlight">
+                                    <label class="mb-0 text-muted">Male</label>
+                                    <h5>6,000</h5>
+                                </div>
+                                <div class="flex-fill bd-highlight">
+                                    <label class="mb-0 text-muted">Female</label>
+                                    <h5>4,000</h5>
+                                </div>
+                            </div>
+                            <div id="chart-donut" style="height: 300px"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>Patients by Division</h2>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-custom2 table-hover">
+                                <thead>
+                                    <tr>
+                                        <th colspan="3">Division</th>
+                                        <th colspan="2">Activity</th>
+                                    </tr>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Male</th>
+                                        <th>Female</th>
+                                        <th>InPatient</th>
+                                        <th>OutPatient</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span>Surgery</span></td>
+                                        <td><span>25</span></td>
+                                        <td><span>11</span></td>
+                                        <td>2,025 <span class="text-green">8.5%</span></td>
+                                        <td>1,250 <span class="text-red">13.25%</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>Gynaecology</span></td>
+                                        <td><span>43</span></td>
+                                        <td><span>29</span></td>
+                                        <td>521 <span class="text-green">18.3%</span></td>
+                                        <td>842 <span class="text-red">23.4%</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>Dermatology</span></td>
+                                        <td><span>89</span></td>
+                                        <td><span>56</span></td>
+                                        <td>2,028 <span class="text-red">19.7%</span></td>
+                                        <td>1,800 <span class="text-red">13.2%</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>Neurology</span></td>
+                                        <td><span>15</span></td>
+                                        <td><span>35</span></td>
+                                        <td>1,801 <span class="text-green">8.4%</span></td>
+                                        <td>1,251 <span class="text-red">10.9%</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>Oncology</span></td>
+                                        <td><span>61</span></td>
+                                        <td><span>21</span></td>
+                                        <td>2,714 <span class="text-green">8.7%</span></td>
+                                        <td>890 <span class="text-green">23.3%</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>Orthopaedics</span></td>
+                                        <td><span>85</span></td>
+                                        <td><span>23</span></td>
+                                        <td>1,205 <span class="text-green">8.5%</span></td>
+                                        <td>523 <span class="text-green">13.8%</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>Cardiology</span></td>
+                                        <td><span>38</span></td>
+                                        <td><span>18</span></td>
+                                        <td>3,890 <span class="text-green">8.9%</span></td>
+                                        <td>872 <span class="text-red">17.4%</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+@code {
+
+}

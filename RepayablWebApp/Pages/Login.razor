@@ -1,15 +1,9 @@
 ﻿@page "/login"
-@using RepayablWebApp.Data.Repositories
-@inject IUserClient _userClient
+@using RepayablWebApp.Data.Repositories;
+@inject IUserClient _userClient;
+@inject IJSRuntime Js;
 <!-- Page Loader -->
 
-<div class="pattern">
-    <span class="red"></span>
-    <span class="indigo"></span>
-    <span class="blue"></span>
-    <span class="green"></span>
-    <span class="orange"></span>
-</div>
 
 <div class="auth-main particles_js">
     <div class="auth_div vivify popIn">
@@ -19,10 +13,10 @@
         <div class="card">
             <div class="body">
                 <p class="lead">Login to your account</p>
-                <div class="form-auth-small m-t-20" >
+                <div class="form-auth-small m-t-20">
                     <div class="form-group">
                         <label for="signin-email" class="control-label sr-only">Username</label>
-                        <input type="email" class="form-control round" id="signin-email"  @bind="SelectedUser.UserName" placeholder="Username" />
+                        <input type="email" class="form-control round" id="signin-email" @bind="SelectedUser.UserName" placeholder="Username" />
                     </div>
                     <div class="form-group">
                         <label for="signin-password" class="control-label sr-only">Password</label>
@@ -37,7 +31,7 @@
                     <button @onclick="loginUserAsync" class="btn btn-primary btn-round btn-block">LOGIN</button>
                     <div class="bottom">
                         <span class="helper-text m-b-10"><i class="fa fa-lock"></i> <a href="page-forgot-password.html">Forgot password?</a></span>
-                        <span>Don't have an account? <a href="Register">Register</a></span><br/>
+                        <span>Don't have an account? <a href="Register">Register</a></span><br />
                         <span>@SuccessMsg</span>
                     </div>
                 </div>
