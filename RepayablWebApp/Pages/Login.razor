@@ -1,15 +1,10 @@
 ﻿@page "/login"
-@using RepayablWebApp.Data.Repositories
-@inject IUserClient _userClient
+@layout  NoNavLayout
+@using RepayablWebApp.Data.Repositories;
+@inject IUserClient _userClient;
+@inject IJSRuntime Js;
 <!-- Page Loader -->
 
-<div class="pattern">
-    <span class="red"></span>
-    <span class="indigo"></span>
-    <span class="blue"></span>
-    <span class="green"></span>
-    <span class="orange"></span>
-</div>
 
 <div class="auth-main particles_js">
     <div class="auth_div vivify popIn">
@@ -47,15 +42,6 @@
     </div>
     <div id="particles-js"></div>
 </div>
-
-
-
-
-
-
-
-
-
 
 <!-- END WRAPPER -->
 
