@@ -1,54 +1,38 @@
 ﻿@page "/login"
+@layout  NoNavLayout
 @using RepayablWebApp.Data.Repositories;
 @inject IUserClient _userClient;
 @inject IJSRuntime Js;
 <!-- Page Loader -->
 
 
-<div class="auth-main particles_js">
-    <div class="auth_div vivify popIn">
-        <div class="auth_brand">
-            <a class="navbar-brand" href="javascript:void(0);"><img src="assets/images/icon.svg" width="30" height="30" class="d-inline-block align-top mr-2" alt="">Oculux</a>
-        </div>
-        <div class="card">
-            <div class="body">
-                <p class="lead">Login to your account</p>
-                <div class="form-auth-small m-t-20">
-                    <div class="form-group">
-                        <label for="signin-email" class="control-label sr-only">Username</label>
-                        <input type="email" class="form-control round" id="signin-email" @bind="SelectedUser.UserName" placeholder="Username" />
-                    </div>
-                    <div class="form-group">
-                        <label for="signin-password" class="control-label sr-only">Password</label>
-                        <input type="password" class="form-control round" id="signin-password" @bind="SelectedUser.Password" placeholder="Password" />
-                    </div>
-                    <div class="form-group clearfix">
-                        <label class="fancy-checkbox element-left">
-                            <input type="checkbox">
-                            <span>Remember me</span>
-                        </label>
-                    </div>
-                    <button @onclick="loginUserAsync" class="btn btn-primary btn-round btn-block">LOGIN</button>
-                    <div class="bottom">
-                        <span class="helper-text m-b-10"><i class="fa fa-lock"></i> <a href="page-forgot-password.html">Forgot password?</a></span>
-                        <span>Don't have an account? <a href="Register">Register</a></span><br />
-                        <span>@SuccessMsg</span>
-                    </div>
-                </div>
+<div class="card">
+    <div class="body">
+        <p class="lead">Login to your account</p>
+        <div class="form-auth-small m-t-20">
+            <div class="form-group">
+                <label for="signin-email" class="control-label sr-only">Username</label>
+                <input type="email" class="form-control round" id="signin-email" @bind="SelectedUser.UserName" placeholder="Username" />
+            </div>
+            <div class="form-group">
+                <label for="signin-password" class="control-label sr-only">Password</label>
+                <input type="password" class="form-control round" id="signin-password" @bind="SelectedUser.Password" placeholder="Password" />
+            </div>
+            <div class="form-group clearfix">
+                <label class="fancy-checkbox element-left">
+                    <input type="checkbox">
+                    <span>Remember me</span>
+                </label>
+            </div>
+            <button @onclick="loginUserAsync" class="btn btn-primary btn-round btn-block">LOGIN</button>
+            <div class="bottom">
+                <span class="helper-text m-b-10"><i class="fa fa-lock"></i> <a href="page-forgot-password.html">Forgot password?</a></span>
+                <span>Don't have an account? <a href="Register">Register</a></span><br />
+                <span>@SuccessMsg</span>
             </div>
         </div>
     </div>
-    <div id="particles-js"></div>
 </div>
-
-
-
-
-
-
-
-
-
 
 <!-- END WRAPPER -->
 
