@@ -17,11 +17,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepayablClient.iOS", "Repay
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepayablClient.UWP", "RepayablClient\RepayablClient.UWP\RepayablClient.UWP.csproj", "{87E5B786-6566-4F21-B366-9C10464F729D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepayablClient.Wasm", "RepayablClient\RepayablClient.Wasm\RepayablClient.Wasm.csproj", "{DE679F12-DF66-4753-A0B1-9E2AF25FB6A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepayablClient.Wasm", "RepayablClient\RepayablClient.Wasm\RepayablClient.Wasm.csproj", "{DE679F12-DF66-4753-A0B1-9E2AF25FB6A1}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		RepayablClient\RepayablClient.Shared\RepayablClient.Shared.projitems*{6279c845-92f8-4333-ab99-3d213163593c}*SharedItemsImports = 13
+		RepayablClient\RepayablClient.Shared\RepayablClient.Shared.projitems*{87e5b786-6566-4f21-b366-9c10464f729d}*SharedItemsImports = 4
+		RepayablClient\RepayablClient.Shared\RepayablClient.Shared.projitems*{8cecbf14-b8dd-4c07-8da1-f42a5813d447}*SharedItemsImports = 4
+		RepayablClient\RepayablClient.Shared\RepayablClient.Shared.projitems*{bda7f522-8e0d-4bb9-b9b9-ddad5aaa3971}*SharedItemsImports = 4
 		RepayablClient\RepayablClient.Shared\RepayablClient.Shared.projitems*{de679f12-df66-4753-a0b1-9e2af25fb6a1}*SharedItemsImports = 5
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
