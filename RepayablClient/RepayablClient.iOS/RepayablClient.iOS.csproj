@@ -115,6 +115,12 @@
     <BundleResource Include="Resources\Fonts\winjs-symbols.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Uno.Prism.DryIoc.Uno">
+      <Version>8.0.0.13502-ci</Version>
+    </PackageReference>
+    <PackageReference Include="Uno.Prism.Uno">
+      <Version>8.0.0.13502-ci</Version>
+    </PackageReference>
     <PackageReference Include="Uno.UI" Version="2.0.532" />
     <PackageReference Include="Uno.UI.RemoteControl" Version="2.0.532" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />

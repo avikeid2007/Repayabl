@@ -1,7 +1,6 @@
-﻿<Application
+﻿<prismDry:PrismApplication
     x:Class="RepayablClient.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:RepayablClient">
-
-</Application>
+    xmlns:local="using:RepayablClient"
+    xmlns:prismDry="using:Prism.DryIoc" />
