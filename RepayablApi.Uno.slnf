@@ -1,0 +1,12 @@
+{
+  "solution": {
+    "path": "Repayabl.sln",
+    "projects": [
+      "RepayablClient\\RepayablClient.Droid\\RepayablClient.Droid.csproj",
+      "RepayablClient\\RepayablClient.Shared\\RepayablClient.Shared.shproj",
+      "RepayablClient\\RepayablClient.UWP\\RepayablClient.UWP.csproj",
+      "RepayablClient\\RepayablClient.Wasm\\RepayablClient.Wasm.csproj",
+      "RepayablClient\\RepayablClient.iOS\\RepayablClient.iOS.csproj"
+    ]
+  }
+}
