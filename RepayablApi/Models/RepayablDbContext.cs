@@ -18,15 +18,6 @@ namespace RepayablApi.Models
         public virtual DbSet<TenantOutstanding> TenantOutstandings { get; set; }
         public virtual DbSet<Tenant> Tenants { get; set; }
         public virtual DbSet<User> Users { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseMySql("server=50.62.209.77;port=3306;database=Repaybl;uid=Repayabl;password=xavi@1234");
-            }
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<FamilyDetail>(entity =>
