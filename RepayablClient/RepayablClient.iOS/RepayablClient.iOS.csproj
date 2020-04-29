@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProjectGuid>{BDA7F522-8E0D-4BB9-B9B9-DDAD5AAA3971}</ProjectGuid>
+    <ProjectGuid>{5EBE92AB-CA99-4524-9EB5-BA82E9F615E0}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
     <RootNamespace>RepayablClient</RootNamespace>
@@ -115,16 +115,14 @@
     <BundleResource Include="Resources\Fonts\winjs-symbols.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Uno.Prism.DryIoc.Uno">
-      <Version>8.0.0.13502-ci</Version>
+    <PackageReference Include="Uno.Microsoft.Xaml.Behaviors.Uwp.Managed">
+      <Version>2.0.2-uno.66</Version>
     </PackageReference>
-    <PackageReference Include="Uno.Prism.Uno">
-      <Version>8.0.0.13502-ci</Version>
-    </PackageReference>
-    <PackageReference Include="Uno.UI" Version="2.0.532" />
-    <PackageReference Include="Uno.UI.RemoteControl" Version="2.0.532" Condition="'$(Configuration)'=='Debug'" />
+    <PackageReference Include="Uno.UI" Version="2.3.0-dev.61" />
+    <PackageReference Include="Uno.UI.RemoteControl" Version="2.3.0-dev.61" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
+    <PackageReference Include="Prism.DryIoc.Uno" Version="8.0.0.1717-ci" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Media.xcassets\AppIcons.appiconset\Contents.json">

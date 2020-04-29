@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{8CECBF14-B8DD-4C07-8DA1-F42A5813D447}</ProjectGuid>
+    <ProjectGuid>{A99917C8-9110-4177-A5B0-B12F1AE4BBFE}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -61,17 +61,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Uno.Prism.DryIoc.Uno">
-      <Version>8.0.0.13502-ci</Version>
+    <PackageReference Include="Uno.Microsoft.Xaml.Behaviors.Uwp.Managed">
+      <Version>2.0.2-uno.66</Version>
     </PackageReference>
-    <PackageReference Include="Uno.Prism.Uno">
-      <Version>8.0.0.13502-ci</Version>
-    </PackageReference>
-    <PackageReference Include="Uno.UI" Version="2.0.532" />
-    <PackageReference Include="Uno.UI.RemoteControl" Version="2.0.532" Condition="'$(Configuration)'=='Debug'" />
+    <PackageReference Include="Uno.UI" Version="2.3.0-dev.61" />
+    <PackageReference Include="Uno.UI.RemoteControl" Version="2.3.0-dev.61" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Uno.UniversalImageLoader" Version="1.9.32" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
+    <PackageReference Include="Prism.DryIoc.Uno" Version="8.0.0.1717-ci" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
