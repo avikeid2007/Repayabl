@@ -1,51 +1,42 @@
-﻿<UserControl
+﻿
+<UserControl
     x:Class="RepayablClient.Shared.Views.Login"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="using:RepayablClient.Shared.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prismMvvm="using:Prism.Mvvm"
     HorizontalAlignment="Stretch"
     VerticalAlignment="Stretch"
     prismMvvm:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
-    <Grid Background="Red">
+    <Grid Background="#881798">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="3*" />
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" Background="LightBlue">
-            <TextBlock
-                FontSize="30"
-                FontStyle="Italic"
-                FontWeight="ExtraBlack"
-                Text="Login Form"
-                TextAlignment="Center" />
-        </Border>
-        <StackPanel x:Name="stackone" Grid.Row="1">
-            <TextBox
-                Width="300"
-                Margin="0,50,0,0"
-                PlaceholderText="Enter Email" />
-            <TextBox
-                Width="300"
-                Margin="0,10,0,0"
-                PlaceholderText="Enter Password" />
-            <RelativePanel Margin="0,10,0,0" HorizontalAlignment="Center">
-                <Button
-                    x:Name="loginbtn"
-                    Width="65"
-                    Height="35"
-                    Content="Login" />
-                <Button
-                    Width="65"
-                    Height="35"
-                    Margin="10,0,0,0"
-                    Command="{Binding LoginCommand}"
-                    Content="Cancel"
-                    RelativePanel.RightOf="loginbtn" />
-            </RelativePanel>
-        </StackPanel>
+        <Grid
+            Width="250"
+            Height="300"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+            </Grid.RowDefinitions>
+            <Image
+                Grid.Row="0"
+                Source="/Assets/Icon.png"
+                Stretch="Fill" />
+            <TextBlock Grid.Row="1" Text="{Binding LoginUser}" />
+            <ProgressBar
+                Grid.Row="2"
+                Width="250"
+                Margin="0,20,0,0"
+                Foreground="White"
+                IsIndeterminate="True"
+                ShowError="False"
+                ShowPaused="False" />
+        </Grid>
     </Grid>
 </UserControl>

@@ -1,22 +1,33 @@
-﻿using AsyncCommands;
-using Microsoft.Identity.Client;
+﻿using Microsoft.Identity.Client;
 using RepayablClient.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace RepayablClient.Shared.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-        public ICommand LoginCommand { get; set; }
+        //public ICommand LoginCommand { get; set; }
         string graphAPIEndpoint = "https://graph.microsoft.com/v1.0/me";
+        private string _loginUser;
+
+        public string LoginUser
+        {
+            get { return _loginUser; }
+            set
+            {
+                _loginUser = value;
+                RaisePropertyChanged();
+            }
+        }
         public LoginViewModel()
         {
             Title = "Login Page";
-            LoginCommand = new AsyncCommand(LoginCommandExecutedAsync);
+            LoginUser = "Attempt to Login";
+            _ = LoginCommandExecutedAsync();
+            //LoginCommand = new AsyncCommand(LoginCommandExecutedAsync);
         }
 
         private async Task LoginCommandExecutedAsync()
@@ -25,7 +36,6 @@ namespace RepayablClient.Shared.ViewModels
             AuthenticationResult authResult = null;
             IEnumerable<IAccount> accounts = await App.publicClientApplication.GetAccountsAsync().ConfigureAwait(false);
             IAccount firstAccount = accounts.FirstOrDefault();
-
             try
             {
                 authResult = await App.publicClientApplication.AcquireTokenSilent(Consts.Scopes, firstAccount)
@@ -33,10 +43,7 @@ namespace RepayablClient.Shared.ViewModels
             }
             catch (MsalUiRequiredException ex)
             {
-                // A MsalUiRequiredException happened on AcquireTokenSilent.
-                // This indicates you need to call AcquireTokenInteractive to acquire a token
                 System.Diagnostics.Debug.WriteLine($"MsalUiRequiredException: {ex.Message}");
-
                 try
                 {
                     authResult = await App.publicClientApplication.AcquireTokenInteractive(Consts.Scopes)
@@ -57,15 +64,7 @@ namespace RepayablClient.Shared.ViewModels
                 var content = await GetHttpContentWithTokenAsync(graphAPIEndpoint,
                                                             authResult.AccessToken).ConfigureAwait(false);
 
-                // Go back to the UI thread to make changes to the UI
-                //    await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-                //    {
-                //        ResultText.Text = content;
-                //        DisplayBasicTokenInfo(authResult);
-                //        this.SignOutButton.Visibility = Visibility.Visible;
-                //    });
-                //}
-
+                LoginUser = content;
 
             }
         }
