@@ -36,8 +36,10 @@
   </ItemGroup>
   <ItemGroup>
     <!-- Note that for WebAssembly version 1.1.1 of the console logger required -->
+    <PackageReference Include="AsyncCommands" Version="1.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.12.0" />
     <PackageReference Include="Uno.Microsoft.Xaml.Behaviors.Uwp.Managed" Version="2.0.2-uno.66" />
     <PackageReference Include="Uno.UI" Version="2.3.0-dev.61" />
     <PackageReference Include="Uno.UI.RemoteControl" Version="2.3.0-dev.61" Condition="'$(Configuration)'=='Debug'" />

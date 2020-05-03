@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Logging;
+using Microsoft.Identity.Client;
 using Prism.Ioc;
 using RepayablClient.Shared.Views;
 using RepayablClient.Views;
@@ -13,6 +14,7 @@ namespace RepayablClient
 	/// </summary>
 	sealed partial class App
 	{
+		public static IPublicClientApplication publicClientApplication;
 		/// <summary>
 		/// Initializes the singleton application object.  This is the first line of authored code
 		/// executed, and as such is the logical equivalent of main() or WinMain().
@@ -22,6 +24,9 @@ namespace RepayablClient
 			ConfigureFilters(global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory);
 
 			this.InitializeComponent();
+			publicClientApplication = PublicClientApplicationBuilder.Create(Consts.ClientId)
+													.WithRedirectUri("https://login.microsoftonline.com/common/oauth2/nativeclient")
+														.Build();
 		}
 
 		/// <summary>
@@ -67,8 +72,8 @@ namespace RepayablClient
 			factory
 				.WithFilter(new FilterLoggerSettings
 					{
-						{ "Uno", LogLevel.Warning },
-						{ "Windows", LogLevel.Warning },
+						{ "Uno", Microsoft.Extensions.Logging.LogLevel.Warning },
+						{ "Windows", Microsoft.Extensions.Logging.LogLevel.Warning },
 
 						// Debug JS interop
 						// { "Uno.Foundation.WebAssemblyRuntime", LogLevel.Debug },
@@ -105,10 +110,15 @@ namespace RepayablClient
 					}
 				)
 #if DEBUG
-				.AddConsole(LogLevel.Debug);
+				.AddConsole(Microsoft.Extensions.Logging.LogLevel.Debug);
 #else
 				.AddConsole(LogLevel.Information);
 #endif
 		}
+	}
+	static class Consts
+	{
+		public static string ClientId { get; } = "f8a883fb-a59f-4f46-915a-d841941445c7";
+		public static string[] Scopes { get; } = new[] { "User.Read" };
 	}
 }

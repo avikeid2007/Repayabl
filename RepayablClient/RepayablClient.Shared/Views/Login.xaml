@@ -10,55 +10,42 @@
     VerticalAlignment="Stretch"
     prismMvvm:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
-
     <Grid Background="Red">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="3*" />
         </Grid.RowDefinitions>
-
         <Border Grid.Row="0" Background="LightBlue">
-
             <TextBlock
                 FontSize="30"
                 FontStyle="Italic"
                 FontWeight="ExtraBlack"
                 Text="Login Form"
                 TextAlignment="Center" />
-
         </Border>
-
         <StackPanel x:Name="stackone" Grid.Row="1">
-
             <TextBox
                 Width="300"
                 Margin="0,50,0,0"
                 PlaceholderText="Enter Email" />
-
             <TextBox
                 Width="300"
                 Margin="0,10,0,0"
                 PlaceholderText="Enter Password" />
-
             <RelativePanel Margin="0,10,0,0" HorizontalAlignment="Center">
-
                 <Button
                     x:Name="loginbtn"
                     Width="65"
                     Height="35"
                     Content="Login" />
-
                 <Button
-                    x:Name="cancelbtn"
                     Width="65"
                     Height="35"
                     Margin="10,0,0,0"
+                    Command="{Binding LoginCommand}"
                     Content="Cancel"
                     RelativePanel.RightOf="loginbtn" />
-
             </RelativePanel>
-
         </StackPanel>
-
     </Grid>
 </UserControl>
