@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Client;
 using Prism.Ioc;
+using RepayablClient.Droid;
 using RepayablClient.Shared.Views;
 using RepayablClient.Views;
 using Windows.ApplicationModel;
@@ -9,71 +10,79 @@ using Windows.UI.Xaml;
 
 namespace RepayablClient
 {
-	/// <summary>
-	/// Provides application-specific behavior to supplement the default Application class.
-	/// </summary>
-	sealed partial class App
-	{
-		public static IPublicClientApplication publicClientApplication;
-		/// <summary>
-		/// Initializes the singleton application object.  This is the first line of authored code
-		/// executed, and as such is the logical equivalent of main() or WinMain().
-		/// </summary>
-		public App()
-		{
-			ConfigureFilters(global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory);
+    /// <summary>
+    /// Provides application-specific behavior to supplement the default Application class.
+    /// </summary>
+    sealed partial class App
+    {
+        public static IPublicClientApplication publicClientApplication;
 
-			this.InitializeComponent();
-			publicClientApplication = PublicClientApplicationBuilder.Create(Consts.ClientId)
-													.WithRedirectUri("https://login.microsoftonline.com/common/oauth2/nativeclient")
-														.Build();
-		}
+        public static MainActivity ParentWindow { get; set; }
+        static bool IsSuspended = false;
+        /// <summary>
+        /// Initializes the singleton application object.  This is the first line of authored code
+        /// executed, and as such is the logical equivalent of main() or WinMain().
+        /// </summary>
+        public App()
+        {
+            ConfigureFilters(global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory);
 
-		/// <summary>
-		/// Invoked when the application is launched normally by the end user.  Other entry points
-		/// will be used such as when the application is launched to open a specific file.
-		/// </summary>
-		/// <param name="e">Details about the launch request and process.</param>
-		protected override void OnLaunched(LaunchActivatedEventArgs e)
-		{
-			base.OnLaunched(e);
-		}
+            this.InitializeComponent();
+            publicClientApplication = PublicClientApplicationBuilder.Create(Consts.ClientId)
+                                                    .WithRedirectUri("https://login.microsoftonline.com/common/oauth2/nativeclient")
+                                                        .Build();
+        }
 
-		/// <summary>
-		/// Invoked when application execution is being suspended.  Application state is saved
-		/// without knowing whether the application will be terminated or resumed with the contents
-		/// of memory still intact.
-		/// </summary>
-		/// <param name="sender">The source of the suspend request.</param>
-		/// <param name="e">Details about the suspend request.</param>
-		protected override void OnSuspending(SuspendingEventArgs e)
-		{
-			var deferral = e.SuspendingOperation.GetDeferral();
-			//TODO: Save application state and stop any background activity
-			deferral.Complete();
-		}
+        /// <summary>
+        /// Invoked when the application is launched normally by the end user.  Other entry points
+        /// will be used such as when the application is launched to open a specific file.
+        /// </summary>
+        /// <param name="e">Details about the launch request and process.</param>
+        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        {
+            if (!IsSuspended)
+            {
+                base.OnLaunched(e);
+            }
 
-		protected override UIElement CreateShell()
-		{
-			return Container.Resolve<Shell>();
-		}
+        }
+        //protected override 
+        /// <summary>
+        /// Invoked when application execution is being suspended.  Application state is saved
+        /// without knowing whether the application will be terminated or resumed with the contents
+        /// of memory still intact.
+        /// </summary>
+        /// <param name="sender">The source of the suspend request.</param>
+        /// <param name="e">Details about the suspend request.</param>
+        protected override void OnSuspending(SuspendingEventArgs e)
+        {
+            var deferral = e.SuspendingOperation.GetDeferral();
+            IsSuspended = true;
+            //TODO: Save application state and stop any background activity
+            deferral.Complete();
+        }
 
-		protected override void RegisterTypes(IContainerRegistry containerRegistry)
-		{
-			containerRegistry.RegisterForNavigation<Login>("Login");
-		}
+        protected override UIElement CreateShell()
+        {
+            return Container.Resolve<Shell>();
+        }
 
-		/// <summary>
-		/// Configures global logging
-		/// </summary>
-		/// <param name="factory"></param>
-		static void ConfigureFilters(ILoggerFactory factory)
-		{
-			factory
-				.WithFilter(new FilterLoggerSettings
-					{
-						{ "Uno", Microsoft.Extensions.Logging.LogLevel.Warning },
-						{ "Windows", Microsoft.Extensions.Logging.LogLevel.Warning },
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.RegisterForNavigation<Login>("Login");
+        }
+
+        /// <summary>
+        /// Configures global logging
+        /// </summary>
+        /// <param name="factory"></param>
+        static void ConfigureFilters(ILoggerFactory factory)
+        {
+            factory
+                .WithFilter(new FilterLoggerSettings
+                    {
+                        { "Uno", Microsoft.Extensions.Logging.LogLevel.Warning },
+                        { "Windows", Microsoft.Extensions.Logging.LogLevel.Warning },
 
 						// Debug JS interop
 						// { "Uno.Foundation.WebAssemblyRuntime", LogLevel.Debug },
@@ -108,17 +117,17 @@ namespace RepayablClient
 						// { "Windows.UI.Xaml.Controls.BufferViewCache", LogLevel.Debug }, //Android
 						// { "Windows.UI.Xaml.Controls.VirtualizingPanelGenerator", LogLevel.Debug }, //WASM
 					}
-				)
+                )
 #if DEBUG
-				.AddConsole(Microsoft.Extensions.Logging.LogLevel.Debug);
+                .AddConsole(Microsoft.Extensions.Logging.LogLevel.Debug);
 #else
 				.AddConsole(LogLevel.Information);
 #endif
-		}
-	}
-	static class Consts
-	{
-		public static string ClientId { get; } = "f8a883fb-a59f-4f46-915a-d841941445c7";
-		public static string[] Scopes { get; } = new[] { "User.Read" };
-	}
+        }
+    }
+    static class Consts
+    {
+        public static string ClientId { get; } = "f8a883fb-a59f-4f46-915a-d841941445c7";
+        public static string[] Scopes { get; } = new[] { "User.Read" };
+    }
 }
