@@ -1,7 +1,10 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Client;
 using Prism.Ioc;
+#if __ANDROID__
 using RepayablClient.Droid;
+#endif 
+
 using RepayablClient.Shared.Views;
 using RepayablClient.Views;
 using Windows.ApplicationModel;
@@ -16,8 +19,9 @@ namespace RepayablClient
     sealed partial class App
     {
         public static IPublicClientApplication publicClientApplication;
-
+#if __ANDROID__
         public static MainActivity ParentWindow { get; set; }
+#endif 
         static bool IsSuspended = false;
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -29,7 +33,8 @@ namespace RepayablClient
 
             this.InitializeComponent();
             publicClientApplication = PublicClientApplicationBuilder.Create(Consts.ClientId)
-                                                    .WithRedirectUri("https://login.microsoftonline.com/common/oauth2/nativeclient")
+                                                       // .WithRedirectUri("https://login.microsoftonline.com/common/oauth2/nativeclient")
+                                                       .WithRedirectUri("msalf8a883fb-a59f-4f46-915a-d841941445c7://auth")
                                                         .Build();
         }
 
