@@ -16,28 +16,55 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid
-            Width="250"
-            Height="300"
+            Width="400"
             HorizontalAlignment="Center"
             VerticalAlignment="Center">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="25" />
-                <RowDefinition Height="25" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Image
                 Grid.Row="0"
+                Width="200"
+                HorizontalAlignment="Left"
+                Source="/Assets/Icon.png"
+                Stretch="Uniform" />
+            <TextBlock
+                Grid.Row="1"
+                Margin="12,8,12,0"
+                HorizontalAlignment="Stretch"
+                Style="{StaticResource TitleTextBlockStyle}"
+                Text="Log in to Your Account" />
+            <TextBox
+                Grid.Row="2"
+                Height="56"
+                Margin="12,8,12,0"
+                HorizontalAlignment="Stretch"
+                Header="UserName"
+                PlaceholderText="UserName" />
+            <PasswordBox
+                Grid.Row="3"
+                Height="56"
+                Margin="12,8,12,0"
+                HorizontalAlignment="Stretch"
+                Header="Password"
+                PlaceholderText="Password" />
+            <!--<Image
+                Grid.Row="0"
                 Source="/Assets/Icon.png"
                 Stretch="Fill" />
-            <TextBlock Grid.Row="1" Text="{Binding LoginUser}" />
-            <ProgressBar
+            <TextBlock Grid.Row="1" Text="{Binding LoginUser}" />-->
+            <!--<ProgressBar
                 Grid.Row="2"
                 Width="250"
                 Margin="0,20,0,0"
                 Foreground="White"
                 IsIndeterminate="True"
                 ShowError="False"
-                ShowPaused="False" />
+                ShowPaused="False" />-->
         </Grid>
     </Grid>
     <Interactivity:Interaction.Behaviors>

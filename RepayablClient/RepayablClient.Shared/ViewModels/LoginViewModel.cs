@@ -1,5 +1,4 @@
-﻿using AsyncCommands;
-using Microsoft.Identity.Client;
+﻿using Microsoft.Identity.Client;
 using Newtonsoft.Json;
 using RepayablClient.ViewModels;
 using System;
@@ -30,7 +29,7 @@ namespace RepayablClient.Shared.ViewModels
             Title = "Login Page";
             LoginUser = "Attempt to Login";
             //_ = LoginCommandExecutedAsync();
-            LoginCommand = new AsyncCommand(LoginCommandExecutedAsync);
+            // LoginCommand = new AsyncCommand(LoginCommandExecutedAsync);
         }
 
         private async Task LoginCommandExecutedAsync()
