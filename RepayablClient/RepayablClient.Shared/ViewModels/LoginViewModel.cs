@@ -28,7 +28,7 @@ namespace RepayablClient.Shared.ViewModels
         {
             Title = "Login Page";
             LoginUser = "Attempt to Login";
-            //_ = LoginCommandExecutedAsync();
+            _ = LoginCommandExecutedAsync();
             // LoginCommand = new AsyncCommand(LoginCommandExecutedAsync);
         }
 
