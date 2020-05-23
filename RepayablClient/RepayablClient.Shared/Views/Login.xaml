@@ -39,6 +39,7 @@
                 Style="{StaticResource TitleTextBlockStyle}"
                 Text="Log in to Your Account" />
             <TextBox
+                x:Name="TxtUser"
                 Grid.Row="2"
                 Height="56"
                 Margin="12,8,12,0"
@@ -52,6 +53,7 @@
                 HorizontalAlignment="Stretch"
                 Header="Password"
                 PlaceholderText="Password" />
+            <!--<Button Grid.Row="4" Content="click" Click="OnClick"></Button>-->
             <!--<Image
                 Grid.Row="0"
                 Source="/Assets/Icon.png"

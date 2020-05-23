@@ -10,11 +10,17 @@ namespace RepayablClient.Shared.Views
         string graphAPIEndpoint = "https://graph.microsoft.com/v1.0/me";
         public Login()
         {
+
             this.InitializeComponent();
 #if !NETFX_CORE
             this.DataContext = new LoginViewModel();
 #endif
         }
+        //public void OnClick(object sender, object args)
+        //{
+        //    var dt = DateTime.Now.ToString();
+        //    TxtUser.Text = dt;
+        //}
 
     }
 }
