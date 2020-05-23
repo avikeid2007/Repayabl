@@ -1,15 +1,17 @@
 ﻿using Microsoft.Identity.Client;
+using Newtonsoft.Json;
 using RepayablClient.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace RepayablClient.Shared.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-        //public ICommand LoginCommand { get; set; }
+        public ICommand LoginCommand { get; set; }
         string graphAPIEndpoint = "https://graph.microsoft.com/v1.0/me";
         private string _loginUser;
 
@@ -26,8 +28,8 @@ namespace RepayablClient.Shared.ViewModels
         {
             Title = "Login Page";
             LoginUser = "Attempt to Login";
-            _ = LoginCommandExecutedAsync();
-            //LoginCommand = new AsyncCommand(LoginCommandExecutedAsync);
+            //_ = LoginCommandExecutedAsync();
+            // LoginCommand = new AsyncCommand(LoginCommandExecutedAsync);
         }
 
         private async Task LoginCommandExecutedAsync()
@@ -47,9 +49,16 @@ namespace RepayablClient.Shared.ViewModels
                 try
                 {
                     authResult = await App.publicClientApplication.AcquireTokenInteractive(Consts.Scopes)
+#if __ANDROID__
+                   .WithParentActivityOrWindow(App.ParentWindow)
+#endif 
                        .ExecuteAsync();
                 }
                 catch (MsalException msalex)
+                {
+                    // await DisplayMessageAsync($"Error Acquiring Token:{System.Environment.NewLine}{msalex}");
+                }
+                catch (Exception exx)
                 {
                     // await DisplayMessageAsync($"Error Acquiring Token:{System.Environment.NewLine}{msalex}");
                 }
@@ -61,11 +70,13 @@ namespace RepayablClient.Shared.ViewModels
             }
             if (authResult != null)
             {
+                LoginUser = "User" + authResult.Account.Username;
                 var content = await GetHttpContentWithTokenAsync(graphAPIEndpoint,
                                                             authResult.AccessToken).ConfigureAwait(false);
-
-                LoginUser = content;
-
+                dynamic results = JsonConvert.DeserializeObject<dynamic>(content);
+                // var id = results.Id;
+                LoginUser = "Success login";
+                RaisePropertyChanged("LoginUser");
             }
         }
         public async Task<string> GetHttpContentWithTokenAsync(string url, string token)
@@ -89,5 +100,3 @@ namespace RepayablClient.Shared.ViewModels
         }
     }
 }
-
-

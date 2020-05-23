@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="RepayablClient.RepayablClient" android:versionCode="1" android:versionName="1.0" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="16" android:targetSdkVersion="28" />
-	<application android:label="RepayablClient" android:icon="@drawable/Icon"></application>
+	<application android:label="RepayablClient" android:icon="@drawable/Icon">
+  <activity android:name="microsoft.identity.client.BrowserTabActivity"
+            android:configChanges="orientation|screenSize">
+    <intent-filter>
+      <action android:name="android.intent.action.VIEW" />
+      <category android:name="android.intent.category.DEFAULT" />
+      <category android:name="android.intent.category.BROWSABLE" />
+      <data android:scheme="msalf8a883fb-a59f-4f46-915a-d841941445c7" android:host="auth" />
+    </intent-filter>
+  </activity>
+</application>
 </manifest>
