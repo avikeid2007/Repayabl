@@ -39,12 +39,12 @@
     <PackageReference Include="AsyncCommands" Version="1.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
-    <PackageReference Include="Microsoft.Identity.Client" Version="4.12.0" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.14.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Uno.Microsoft.Xaml.Behaviors.Uwp.Managed" Version="2.0.2-uno.66" />
-    <PackageReference Include="Uno.UI" Version="2.3.0-dev.61" />
-    <PackageReference Include="Uno.UI.RemoteControl" Version="2.3.0-dev.61" Condition="'$(Configuration)'=='Debug'" />
-    <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.2.0-dev.29" />
+    <PackageReference Include="Uno.UI" Version="3.0.0-dev.76" />
+    <PackageReference Include="Uno.UI.RemoteControl" Version="3.0.0-dev.76" Condition="'$(Configuration)'=='Debug'" />
+    <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.3.0-dev.7" />
     <PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="1.2.0-dev.29" />
     <PackageReference Include="Prism.Core" Version="8.0.0.1717-ci" />
 
