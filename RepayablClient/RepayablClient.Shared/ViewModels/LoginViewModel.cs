@@ -1,5 +1,6 @@
 ﻿using Microsoft.Identity.Client;
 using Newtonsoft.Json;
+using RepayablClient.Shared.Models;
 using RepayablClient.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace RepayablClient.Shared.ViewModels
         {
             Title = "Login Page";
             LoginUser = "Attempt to Login";
-            //_ = LoginCommandExecutedAsync();
+            _ = LoginCommandExecutedAsync();
             // LoginCommand = new AsyncCommand(LoginCommandExecutedAsync);
         }
 
@@ -73,7 +74,7 @@ namespace RepayablClient.Shared.ViewModels
                 LoginUser = "User" + authResult.Account.Username;
                 var content = await GetHttpContentWithTokenAsync(graphAPIEndpoint,
                                                             authResult.AccessToken).ConfigureAwait(false);
-                dynamic results = JsonConvert.DeserializeObject<dynamic>(content);
+                var results = JsonConvert.DeserializeObject<Member>(content);
                 // var id = results.Id;
                 LoginUser = "Success login";
                 RaisePropertyChanged("LoginUser");
