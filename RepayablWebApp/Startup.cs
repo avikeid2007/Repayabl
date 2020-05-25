@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RepayablWebApp.Data;
+using RepayablWebApp.Data.Repositories;
 
 namespace RepayablWebApp
 {
@@ -23,6 +24,7 @@ namespace RepayablWebApp
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+            services.AddScoped<IUserClient,UserClient>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

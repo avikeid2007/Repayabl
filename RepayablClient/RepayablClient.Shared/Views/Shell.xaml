@@ -1,0 +1,34 @@
+<Page
+    x:Class="RepayablClient.Views.Shell"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Interactions="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:RepayablClient"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prismMvvm="using:Prism.Mvvm"
+    xmlns:prismRegions="using:Prism.Regions"
+    prismMvvm:ViewModelLocator.AutoWireViewModel="True"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <ContentControl
+            Grid.Row="1"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            HorizontalContentAlignment="Stretch"
+            VerticalContentAlignment="Stretch"
+            prismRegions:RegionManager.RegionName="ContentRegion">
+            <Interactivity:Interaction.Behaviors>
+                <Interactions:EventTriggerBehavior EventName="Loaded">
+                    <Interactions:InvokeCommandAction Command="{Binding NavToLoginCommand}" />
+                </Interactions:EventTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
+        </ContentControl>
+    </Grid>
+</Page>

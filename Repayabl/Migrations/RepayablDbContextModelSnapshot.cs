@@ -63,12 +63,15 @@ namespace Repayabl.Migrations
                         .HasMaxLength(10)
                         .IsUnicode(false);
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("LastName")
                         .HasColumnType("varchar(50)")
                         .HasMaxLength(50)
                         .IsUnicode(false);
 
-                    b.Property<DateTime?>("Modifed")
+                    b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ModifiedBy")
@@ -132,7 +135,10 @@ namespace Repayabl.Migrations
                     b.Property<int>("FloorCount")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("Modifed")
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ModifiedBy")
@@ -206,10 +212,13 @@ namespace Repayabl.Migrations
                     b.Property<decimal>("ElectricityBillAmount")
                         .HasColumnType("numeric(8, 2)");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<bool?>("IsPaid")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime?>("Modifed")
+                    b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ModifiedBy")
@@ -272,13 +281,16 @@ namespace Repayabl.Migrations
                     b.Property<decimal>("ElectRate")
                         .HasColumnType("numeric(10, 2)");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime?>("LastBillPaidDate")
                         .HasColumnType("datetime");
 
                     b.Property<Guid?>("LastPaidBillId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("Modifed")
+                    b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ModifiedBy")
@@ -309,6 +321,55 @@ namespace Repayabl.Migrations
                     b.HasIndex("PropertyId");
 
                     b.ToTable("Rooms");
+                });
+
+            modelBuilder.Entity("Repayabl.Models.RoomAllotment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("(newsequentialid())");
+
+                    b.Property<DateTime?>("AllotmentDate")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("(getdate())");
+
+                    b.Property<DateTime?>("Created")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("(getdate())");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ReleaseDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("RoomId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("TenantId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoomId");
+
+                    b.HasIndex("TenantId");
+
+                    b.ToTable("RoomAllotments");
                 });
 
             modelBuilder.Entity("Repayabl.Models.Tenant", b =>
@@ -343,6 +404,15 @@ namespace Repayabl.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Designation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FacebookUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("FamilyMamberCount")
                         .HasColumnType("int");
 
@@ -358,15 +428,31 @@ namespace Repayabl.Migrations
                         .HasMaxLength(10)
                         .IsUnicode(false);
 
+                    b.Property<string>("InstagramUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("LastName")
                         .HasColumnType("varchar(50)")
                         .HasMaxLength(50)
                         .IsUnicode(false);
 
-                    b.Property<DateTime?>("Modifed")
+                    b.Property<string>("MobileNo")
+                        .HasColumnType("nvarchar(13)")
+                        .HasMaxLength(13);
+
+                    b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Occupation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Qualification")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
@@ -374,8 +460,14 @@ namespace Repayabl.Migrations
                         .HasMaxLength(50)
                         .IsUnicode(false);
 
+                    b.Property<string>("TwitterUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("Zip")
                         .HasColumnType("int");
+
+                    b.Property<string>("linkedinUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -404,13 +496,16 @@ namespace Repayabl.Migrations
                         .HasMaxLength(50)
                         .IsUnicode(false);
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("MimeType")
                         .IsRequired()
                         .HasColumnType("varchar(50)")
                         .HasMaxLength(50)
                         .IsUnicode(false);
 
-                    b.Property<DateTime?>("Modifed")
+                    b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ModifiedBy")
@@ -457,7 +552,10 @@ namespace Repayabl.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("Modifed")
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ModifiedBy")
@@ -499,6 +597,9 @@ namespace Repayabl.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("bit");
 
@@ -508,7 +609,7 @@ namespace Repayabl.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("Modifed")
+                    b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ModifiedBy")
@@ -574,6 +675,21 @@ namespace Repayabl.Migrations
                         .WithMany("Rooms")
                         .HasForeignKey("PropertyId")
                         .HasConstraintName("FK_37")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Repayabl.Models.RoomAllotment", b =>
+                {
+                    b.HasOne("Repayabl.Models.Room", "Room")
+                        .WithMany("RoomAllotments")
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Repayabl.Models.Tenant", "Tenant")
+                        .WithMany("RoomAllotments")
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 

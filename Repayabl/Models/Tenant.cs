@@ -12,6 +12,7 @@ namespace Repayabl.Models
             FamilyDetails = new HashSet<FamilyDetail>();
             RentTransactions = new HashSet<RentTransaction>();
             Rooms = new HashSet<Room>();
+            RoomAllotments = new HashSet<RoomAllotment>();
             TenantDocuments = new HashSet<TenantDocument>();
             TenantOutstandings = new HashSet<TenantOutstanding>();
         }
@@ -38,12 +39,29 @@ namespace Repayabl.Models
         public int? Zip { get; set; }
         public int? FamilyMamberCount { get; set; }
 
+        [StringLength(13)]
+        public string MobileNo { get; set; }
+        public string Email { get; set; }
+        public string Qualification { get; set; }
+        public string FacebookUrl { get; set; }
+        public string TwitterUrl { get; set; }
+        public string linkedinUrl { get; set; }
+        public string InstagramUrl { get; set; }
+
+        public string Occupation { get; set; }
+        public string Designation { get; set; }
+
+
+
         [InverseProperty("Tenant")]
         public virtual ICollection<FamilyDetail> FamilyDetails { get; set; }
         [InverseProperty("PaidByNavigation")]
         public virtual ICollection<RentTransaction> RentTransactions { get; set; }
         [InverseProperty("CurrentTenant")]
         public virtual ICollection<Room> Rooms { get; set; }
+
+        [InverseProperty("Tenant")]
+        public virtual ICollection<RoomAllotment> RoomAllotments { get; set; }
         [InverseProperty("Tenant")]
         public virtual ICollection<TenantDocument> TenantDocuments { get; set; }
         [InverseProperty("Tenant")]
