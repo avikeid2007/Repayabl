@@ -75,9 +75,7 @@ namespace RepayablClient.Shared.ViewModels
                 var content = await GetHttpContentWithTokenAsync(graphAPIEndpoint,
                                                             authResult.AccessToken).ConfigureAwait(false);
                 var results = JsonConvert.DeserializeObject<Member>(content);
-                // var id = results.Id;
-                LoginUser = "Success login";
-                RaisePropertyChanged("LoginUser");
+
             }
         }
         public async Task<string> GetHttpContentWithTokenAsync(string url, string token)

@@ -11,7 +11,10 @@
     VerticalAlignment="Stretch"
     prismMvvm:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
-    <Grid Background="#881798">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/bg.jpg" Stretch="UniformToFill" />
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
@@ -41,7 +44,6 @@
             <TextBox
                 x:Name="TxtUser"
                 Grid.Row="2"
-                Height="56"
                 Margin="12,8,12,0"
                 HorizontalAlignment="Stretch"
                 Header="UserName"
