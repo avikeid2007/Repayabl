@@ -1,4 +1,5 @@
-﻿using Microsoft.Identity.Client;
+﻿using AsyncCommands;
+using Microsoft.Identity.Client;
 using Newtonsoft.Json;
 using RepayablClient.Shared.Models;
 using RepayablClient.ViewModels;
@@ -25,7 +26,9 @@ namespace RepayablClient.Shared.ViewModels
         {
             Title = "Login Page";
             LoginUser = "Attempt to Login";
-            _ = LoginCommandExecutedAsync();
+            //_ = CoreWindow.GetForCurrentThread().Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () => await LoginCommandExecutedAsync());
+            //_ = LoginCommandExecutedAsync();
+            LoginCommand = new AsyncCommand(LoginCommandExecutedAsync);
             IsSignUp1Visible = Visibility.Collapsed;
             IsBusyVisible = Visibility.Visible;
         }
@@ -109,16 +112,13 @@ namespace RepayablClient.Shared.ViewModels
                 }
                 catch (MsalException msalex)
                 {
-                    // await DisplayMessageAsync($"Error Acquiring Token:{System.Environment.NewLine}{msalex}");
                 }
                 catch (Exception exx)
                 {
-                    // await DisplayMessageAsync($"Error Acquiring Token:{System.Environment.NewLine}{msalex}");
                 }
             }
             catch
             {
-                //  await DisplayMessageAsync($"Error Acquiring Token Silently:{System.Environment.NewLine}{ex}");
                 return;
             }
             if (authResult != null)

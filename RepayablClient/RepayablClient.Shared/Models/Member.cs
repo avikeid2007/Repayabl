@@ -26,7 +26,7 @@ namespace RepayablClient.Shared.Models
             set
             {
                 _context = value;
-                RaisePropertyChanged();
+                //RaisePropertyChanged();
             }
         }
         public string Id
@@ -35,7 +35,7 @@ namespace RepayablClient.Shared.Models
             set
             {
                 _id = value;
-                RaisePropertyChanged();
+                //RaisePropertyChanged();
             }
         }
         public string DisplayName
@@ -44,7 +44,7 @@ namespace RepayablClient.Shared.Models
             set
             {
                 _displayName = value;
-                RaisePropertyChanged();
+                //RaisePropertyChanged();
             }
         }
         public string GivenName
@@ -53,7 +53,7 @@ namespace RepayablClient.Shared.Models
             set
             {
                 _givenName = value;
-                RaisePropertyChanged();
+                //RaisePropertyChanged();
             }
         }
         public string Surname
@@ -62,7 +62,7 @@ namespace RepayablClient.Shared.Models
             set
             {
                 _surname = value;
-                RaisePropertyChanged();
+                //RaisePropertyChanged();
             }
         }
         public string UserPrincipalName
@@ -71,7 +71,7 @@ namespace RepayablClient.Shared.Models
             set
             {
                 _userPrincipalName = value;
-                RaisePropertyChanged();
+                //RaisePropertyChanged();
             }
         }
         public List<string> BusinessPhones
@@ -80,7 +80,7 @@ namespace RepayablClient.Shared.Models
             set
             {
                 _businessPhones = value;
-                RaisePropertyChanged();
+                //RaisePropertyChanged();
             }
         }
         public string JobTitle
@@ -89,7 +89,7 @@ namespace RepayablClient.Shared.Models
             set
             {
                 _jobTitle = value;
-                RaisePropertyChanged();
+                //RaisePropertyChanged();
             }
         }
         public string Mail
@@ -98,7 +98,7 @@ namespace RepayablClient.Shared.Models
             set
             {
                 _mail = value;
-                RaisePropertyChanged();
+                //RaisePropertyChanged();
             }
         }
         public string MobilePhone
@@ -107,7 +107,7 @@ namespace RepayablClient.Shared.Models
             set
             {
                 _mobilePhone = value;
-                RaisePropertyChanged();
+                //RaisePropertyChanged();
             }
         }
         public string OfficeLocation
@@ -116,7 +116,7 @@ namespace RepayablClient.Shared.Models
             set
             {
                 _officeLocation = value;
-                RaisePropertyChanged();
+                //RaisePropertyChanged();
             }
         }
         public string PreferredLanguage
@@ -125,7 +125,7 @@ namespace RepayablClient.Shared.Models
             set
             {
                 _preferredLanguage = value;
-                RaisePropertyChanged();
+                //RaisePropertyChanged();
             }
         }
         // public Value[] value { get; set; }
