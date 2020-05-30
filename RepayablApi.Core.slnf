@@ -1,0 +1,8 @@
+{
+  "solution": {
+    "path": "Repayabl.sln",
+    "projects": [
+      "Repayabl\\RepayablCoreApi.csproj"
+    ]
+  }
+}
