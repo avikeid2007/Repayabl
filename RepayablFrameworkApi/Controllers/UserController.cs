@@ -1,7 +1,9 @@
-﻿using RepayablFrameworkApi.Repositories;
+﻿using Repayabl.Data.DTOs;
+using RepayablFrameworkApi.Repositories;
 using System.Collections.Generic;
 
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace RepayablFrameworkApi.Controllers
 {
@@ -78,20 +80,20 @@ namespace RepayablFrameworkApi.Controllers
         //    return StatusCode(HttpStatusCode.NoContent);
         //}
 
-        //// POST: api/Users  
-        //[ResponseType(typeof(User))]
-        //public IHttpActionResult PostUser(User user)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
+        // POST: api/Users  
+        [ResponseType(typeof(User))]
+        public IHttpActionResult PostUser(User user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        //    db.Users.Add(user);
-        //    db.SaveChanges();
+            db.Users.Add(user);
+            db.SaveChanges();
 
-        //    return CreatedAtRoute("DefaultApi", new { id = user.Id }, user);
-        //}
+            return CreatedAtRoute("DefaultApi", new { id = user.Id }, user);
+        }
 
         //// DELETE: api/Users/5  
         //[ResponseType(typeof(User))]
