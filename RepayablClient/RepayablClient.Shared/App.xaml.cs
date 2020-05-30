@@ -32,6 +32,9 @@ namespace RepayablClient
             ConfigureFilters(global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory);
 
             this.InitializeComponent();
+#if !NETFX_CORE
+            Uno.UI.ApplicationHelper.RequestedCustomTheme = "Dark";
+#endif
             publicClientApplication = PublicClientApplicationBuilder.Create(Consts.ClientId)
                                                        // .WithRedirectUri("https://login.microsoftonline.com/common/oauth2/nativeclient")
                                                        .WithRedirectUri("msalf8a883fb-a59f-4f46-915a-d841941445c7://auth")

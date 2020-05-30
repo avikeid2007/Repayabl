@@ -1,0 +1,70 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Repayabl.Data.DTOs
+{
+    public partial class Tenant
+    {
+        public Tenant()
+        {
+            FamilyDetails = new HashSet<FamilyDetail>();
+            RentTransactions = new HashSet<RentTransaction>();
+            Rooms = new HashSet<Room>();
+            RoomAllotments = new HashSet<RoomAllotment>();
+            TenantDocuments = new HashSet<TenantDocument>();
+            TenantOutstandings = new HashSet<TenantOutstanding>();
+        }
+
+        [Key]
+        public Guid Id { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string FirstName { get; set; }
+        [StringLength(50)]
+        public string LastName { get; set; }
+        [Required]
+        [StringLength(10)]
+        public string Gender { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime? BirthDate { get; set; }
+        public string Address { get; set; }
+        [StringLength(50)]
+        public string City { get; set; }
+        [StringLength(50)]
+        public string State { get; set; }
+        [StringLength(50)]
+        public string Country { get; set; }
+        public int? Zip { get; set; }
+        public int? FamilyMamberCount { get; set; }
+
+        [StringLength(13)]
+        public string MobileNo { get; set; }
+        public string Email { get; set; }
+        public string Qualification { get; set; }
+        public string FacebookUrl { get; set; }
+        public string TwitterUrl { get; set; }
+        public string linkedinUrl { get; set; }
+        public string InstagramUrl { get; set; }
+
+        public string Occupation { get; set; }
+        public string Designation { get; set; }
+
+
+
+
+        public ICollection<FamilyDetail> FamilyDetails { get; set; }
+
+        public ICollection<RentTransaction> RentTransactions { get; set; }
+
+        public ICollection<Room> Rooms { get; set; }
+
+
+        public ICollection<RoomAllotment> RoomAllotments { get; set; }
+
+        public ICollection<TenantDocument> TenantDocuments { get; set; }
+
+        public ICollection<TenantOutstanding> TenantOutstandings { get; set; }
+    }
+}
