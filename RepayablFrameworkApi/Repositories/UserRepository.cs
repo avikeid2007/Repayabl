@@ -1,7 +1,6 @@
 ﻿using Repayabl.Data;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Http;
 
 namespace RepayablFrameworkApi.Repositories
 {
@@ -33,17 +32,12 @@ namespace RepayablFrameworkApi.Repositories
             return query.Select(ConvertModels<Repayabl.Data.DTOs.User, User>).ToList();
         }
 
-        public IHttpActionResult PostUser(Repayabl.Data.DTOs.User user)
+        public User SaveUser(Repayabl.Data.DTOs.User user)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.Users.Add(user);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = user.Id }, user);
+            var dbuser = ConvertModels<User, Repayabl.Data.DTOs.User>(user);
+            db.Users.Add(dbuser);
+            db.SaveChangesAsync();
+            return dbuser;
         }
     }
 }

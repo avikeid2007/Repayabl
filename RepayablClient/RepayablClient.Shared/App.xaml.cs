@@ -1,9 +1,10 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Client;
 using Prism.Ioc;
+using RepayablClient.Shared.Repositories;
 #if __ANDROID__
 using RepayablClient.Droid;
-#endif 
+#endif
 
 using RepayablClient.Shared.Views;
 using RepayablClient.Views;
@@ -78,6 +79,7 @@ namespace RepayablClient
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<Login>("Login");
+            containerRegistry.RegisterSingleton<IUserClient, UserClient>();
         }
 
         /// <summary>

@@ -60,7 +60,7 @@
                     Margin="0,4"
                     FontSize="{StaticResource HeaderFontSize}">
                     <Run Text="Hello" />
-                    <Run Text="{Binding CurrentUser.DisplayName}" />
+                    <Run Text="{Binding SignUpUser.DisplayName}" />
                 </TextBlock>
                 <TextBlock
                     Grid.Row="1"
@@ -71,62 +71,58 @@
                 <ToggleButton
                     Grid.Row="2"
                     Grid.Column="0"
-                    Height="60"
+                    Height="80"
                     Margin="0,0,8,0"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     HorizontalContentAlignment="Stretch"
-                    VerticalContentAlignment="Stretch">
+                    VerticalContentAlignment="Stretch"
+                    IsChecked="{Binding IsOwnerChecked, Mode=TwoWay}">
                     <ToggleButton.Content>
                         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <FontIcon
-                                Grid.Column="0"
-                                FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                FontSize="{StaticResource HeaderFontSize}"
-                                Glyph="&#xEF58;" />
+                            <Image Source="/Assets/owner.png" />
 
-                            <TextBlock
+                            <StackPanel
                                 Grid.Column="1"
                                 Margin="12,0,0,0"
                                 HorizontalAlignment="Stretch"
-                                VerticalAlignment="Center"
-                                FontSize="{StaticResource TitleFontSize}"
-                                Text="I am Owner" />
-
+                                VerticalAlignment="Center">
+                                <TextBlock FontSize="{StaticResource SubHeaderFontSize}" Text="I am" />
+                                <TextBlock FontSize="{StaticResource TitleFontSize}" Text="Owner" />
+                            </StackPanel>
                         </Grid>
                     </ToggleButton.Content>
                 </ToggleButton>
                 <ToggleButton
                     Grid.Row="2"
                     Grid.Column="1"
-                    Height="60"
+                    Height="80"
                     Margin="8,0,0,0"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
-                    HorizontalContentAlignment="Stretch">
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch"
+                    IsChecked="{Binding IsTenantChecked, Mode=TwoWay}">
                     <ToggleButton.Content>
                         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <FontIcon
-                                Grid.Column="0"
-                                FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                FontSize="{StaticResource HeaderFontSize}"
-                                Glyph="&#xEBDA;" />
+                            <Image Source="/Assets/tenant.png" />
 
-                            <TextBlock
+                            <StackPanel
                                 Grid.Column="1"
                                 Margin="12,0,0,0"
                                 HorizontalAlignment="Stretch"
-                                VerticalAlignment="Center"
-                                FontSize="{StaticResource TitleFontSize}"
-                                Text="I am Tenant" />
+                                VerticalAlignment="Center">
+                                <TextBlock FontSize="{StaticResource SubHeaderFontSize}" Text="I am" />
+                                <TextBlock FontSize="{StaticResource TitleFontSize}" Text="Tenant" />
+                            </StackPanel>
 
                         </Grid>
                     </ToggleButton.Content>
@@ -138,15 +134,15 @@
                     HorizontalAlignment="Stretch"
                     Header="Mobile No"
                     PlaceholderText="Mobile No"
-                    Text="{Binding MobilePhone}" />
-                <TextBox
+                    Text="{Binding SignUpUser.MobilePhone}" />
+                <!--<TextBox
                     Grid.Row="3"
                     Grid.ColumnSpan="2"
                     Margin="0,4"
                     HorizontalAlignment="Stretch"
                     Header="Mobile No"
                     PlaceholderText="Mobile No"
-                    Text="{Binding MobilePhone}" />
+                    Text="{Binding MobilePhone}" />-->
                 <TextBox
                     Grid.Row="4"
                     Grid.ColumnSpan="2"
@@ -154,7 +150,61 @@
                     HorizontalAlignment="Stretch"
                     Header="Email Id"
                     PlaceholderText="Email Id"
-                    Text="{Binding Mail}" />
+                    Text="{Binding SignUpUser.Mail}" />
+                <Button
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    Height="60"
+                    Margin="0,0,8,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch">
+                    <Button.Content>
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="/Assets/back.png" />
+
+                            <TextBlock
+                                Grid.Column="1"
+                                Margin="12,0,0,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="{StaticResource TitleFontSize}"
+                                Text="Back" />
+
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <Button
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    Height="60"
+                    Margin="8,0,0,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch">
+                    <Button.Content>
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="1" Source="/Assets/forward.png" />
+
+                            <TextBlock
+                                Margin="12,0,0,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="{StaticResource TitleFontSize}"
+                                Text="Next" />
+
+                        </Grid>
+                    </Button.Content>
+                </Button>
             </Grid>
             <!--<TextBlock
                 Grid.Row="1"

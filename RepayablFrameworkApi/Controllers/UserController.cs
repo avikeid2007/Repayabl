@@ -88,11 +88,8 @@ namespace RepayablFrameworkApi.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            db.Users.Add(user);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = user.Id }, user);
+            var dbuser = _userRepository.SaveUser(user);
+            return CreatedAtRoute("DefaultApi", new { id = dbuser.Id }, dbuser);
         }
 
         //// DELETE: api/Users/5  
