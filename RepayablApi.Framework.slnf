@@ -1,0 +1,9 @@
+{
+  "solution": {
+    "path": "Repayabl.sln",
+    "projects": [
+      "Repayabl.Data\\Repayabl.Data.csproj",
+      "RepayablFrameworkApi\\RepayablFrameworkApi.csproj"
+    ]
+  }
+}

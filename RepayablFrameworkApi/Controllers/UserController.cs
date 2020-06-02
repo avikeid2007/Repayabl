@@ -1,7 +1,8 @@
 ﻿using Repayabl.Data.DTOs;
 using RepayablFrameworkApi.Repositories;
+using System;
 using System.Collections.Generic;
-
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 
@@ -45,51 +46,38 @@ namespace RepayablFrameworkApi.Controllers
         //    return FileContentResult();
         //}
 
-        //// PUT: api/Users/5  
-        //[ResponseType(typeof(void))]
-        //public IHttpActionResult PutUsers(Guid id, User user)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    if (id != user.Id)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    db.Entry(user).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        db.SaveChanges();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!UserExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return StatusCode(HttpStatusCode.NoContent);
-        //}
-
-        // POST: api/Users  
-        [ResponseType(typeof(User))]
-        public IHttpActionResult PostUser(User user)
+        // PUT: api/Users/5  
+        [HttpPut]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult UpdateUsers(Guid id, User user)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var dbuser = _userRepository.SaveUser(user);
-            return CreatedAtRoute("DefaultApi", new { id = dbuser.Id }, dbuser);
+            if (id != user.Id)
+            {
+                return BadRequest();
+            }
+            if (!_userRepository.UserExists(id))
+            {
+                return NotFound();
+            }
+            _userRepository.UpdateUserAsync(id, user);
+            return Ok();
+        }
+
+        // POST: api/Users  
+        [HttpPost]
+        [ResponseType(typeof(User))]
+        public async Task<IHttpActionResult> SaveUserAsync(User user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            await _userRepository.SaveUserAsync(user);
+            return Ok();
         }
 
         //// DELETE: api/Users/5  
@@ -108,14 +96,7 @@ namespace RepayablFrameworkApi.Controllers
         //    return Ok(user);
         //}
 
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
+
 
         //private bool UserExists(Guid id)
         //{

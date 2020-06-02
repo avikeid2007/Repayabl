@@ -1,6 +1,9 @@
 ﻿using Repayabl.Data;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace RepayablFrameworkApi.Repositories
 {
@@ -13,13 +16,13 @@ namespace RepayablFrameworkApi.Repositories
             {
                 query = query.Where(x => x.IsActive);
             }
-            if (string.IsNullOrEmpty(userPrincipalName))
+            if (!string.IsNullOrEmpty(userPrincipalName))
             {
-                query = query.Where(x => x.UserPrincipalName == userPrincipalName);
+                query = query.Where(x => x.UserPrincipalName.ToUpper() == userPrincipalName.ToUpper());
             }
-            if (string.IsNullOrEmpty(azureId))
+            if (!string.IsNullOrEmpty(azureId))
             {
-                query = query.Where(x => x.AzureId == azureId);
+                query = query.Where(x => x.AzureId.ToUpper() == azureId.ToUpper());
             }
             if (skip != null)
             {
@@ -29,15 +32,34 @@ namespace RepayablFrameworkApi.Repositories
             {
                 query = query.Take(top.Value);
             }
-            return query.Select(ConvertModels<Repayabl.Data.DTOs.User, User>).ToList();
+            return query.ToList().Select(ConvertModels<Repayabl.Data.DTOs.User, User>).ToList();
         }
 
-        public User SaveUser(Repayabl.Data.DTOs.User user)
+        public async Task<User> SaveUserAsync(Repayabl.Data.DTOs.User user)
         {
             var dbuser = ConvertModels<User, Repayabl.Data.DTOs.User>(user);
             db.Users.Add(dbuser);
-            db.SaveChangesAsync();
+            MapCreated(dbuser, "Avnish");
+            await db.SaveChangesAsync();
             return dbuser;
+        }
+        public async Task UpdateUserAsync(Guid Id, Repayabl.Data.DTOs.User user)
+        {
+            try
+            {
+                var dbUser = await db.Users.FindAsync(Id);
+                MapModels(user, dbUser);
+                db.Entry(dbUser).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public bool UserExists(Guid id)
+        {
+            return db.Users.Count(e => e.Id == id) > 0;
         }
     }
 }

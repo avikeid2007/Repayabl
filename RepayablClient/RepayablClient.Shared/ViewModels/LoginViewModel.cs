@@ -136,6 +136,8 @@ namespace RepayablClient.Shared.ViewModels
         }
 
         AuthenticationResult authResult = null;
+        private bool isUserSaved;
+
         private async Task LoginCommandExecutedAsync()
         {
 
@@ -221,7 +223,9 @@ namespace RepayablClient.Shared.ViewModels
                                 Surname = CurrentUser.Surname,
                                 UserPrincipalName = CurrentUser.UserPrincipalName,
                                 UserName = CurrentUser.UserPrincipalName,
+                                Password = GeneratePassword(8)
                             };
+                            await SaveUserAsync(SignUpUser);
                             IsBusyVisible = Visibility.Collapsed;
                             IsSignUp1Visible = Visibility.Visible;
                         }
@@ -232,6 +236,18 @@ namespace RepayablClient.Shared.ViewModels
 
                 }
             }
+        }
+        private async Task SaveUserAsync(User user)
+        {
+            await _userClient.SaveUserAsync(user);
+            isUserSaved = true;
+        }
+        public string GeneratePassword(int lenth)
+        {
+            Random random = new Random();
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, lenth)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
         public async Task<string> GetHttpContentWithTokenAsync(string url, string token)
@@ -249,9 +265,9 @@ namespace RepayablClient.Shared.ViewModels
                     return await response.Content.ReadAsStringAsync();
                 }
 
-                catch (Exception ex)
+                catch
                 {
-                    return ex.ToString();
+                    throw;
                 }
             }
         }
