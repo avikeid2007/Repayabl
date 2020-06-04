@@ -1,6 +1,8 @@
 ﻿using AsyncCommands;
 using Microsoft.Identity.Client;
 using Newtonsoft.Json;
+using Prism.Commands;
+using Prism.Services.Dialogs;
 using RepayablClient.Shared.Models;
 using RepayablClient.Shared.Repositories;
 using RepayablClient.ViewModels;
@@ -16,6 +18,10 @@ namespace RepayablClient.Shared.ViewModels
     public class LoginViewModel : ViewModelBase
     {
         public ICommand LoginCommand { get; set; }
+        public DelegateCommand SignUp1NextCommand { get; set; }
+        public DelegateCommand SignUp2NextCommand { get; set; }
+        public DelegateCommand SignUp2BackCommand { get; set; }
+
         string graphAPIEndpoint = "https://graph.microsoft.com/v1.0/me";
         private string _loginUser;
         private bool _isBusy;
@@ -25,23 +31,114 @@ namespace RepayablClient.Shared.ViewModels
         private Visibility _isBusyVisible;
         private bool isLoginUiRequired;
         IUserClient _userClient;
-
+        IDialogService _dialogService;
+        private bool _isTenantChecked;
+        private bool _isOwnerChecked;
+        private User _signUpUser;
+        private bool _isApartmentChecked;
+        private bool _isFloorChecked;
+        private bool _isHouseChecked;
+        private Property _signUpUserProperty;
         public LoginViewModel(IUserClient userClient)
         {
             Title = "Login Page";
             _userClient = userClient;
+            //_dialogService = dialogService;
             LoginUser = "Attempt to Login";
-
-            //_ = CoreWindow.GetForCurrentThread().Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () => await LoginCommandExecutedAsync());
-            //_ = LoginCommandExecutedAsync();
             LoginCommand = new AsyncCommand(LoginCommandExecutedAsync);
+            SignUp1NextCommand = new DelegateCommand(SignUp1NextCommandExecuted);
+            SignUp2NextCommand = new DelegateCommand(SignUp2NextCommandExecuted);
+            SignUp2BackCommand = new DelegateCommand(SignUp2BackCommandExecuted);
             IsSignUp1Visible = Visibility.Collapsed;
+            IsSignUp2Visible = Visibility.Collapsed;
+            IsSignUp3Visible = Visibility.Collapsed;
             IsBusyVisible = Visibility.Visible;
         }
-        private bool _isTenantChecked;
-        private bool _isOwnerChecked;
-        private User _signUpUser;
 
+        private void SignUp2BackCommandExecuted()
+        {
+            IsBusyVisible = Visibility.Collapsed;
+            IsSignUp1Visible = Visibility.Visible;
+            IsSignUp2Visible = Visibility.Collapsed;
+            IsSignUp3Visible = Visibility.Collapsed;
+        }
+
+        private void SignUp2NextCommandExecuted()
+        {
+            IsBusyVisible = Visibility.Collapsed;
+            IsSignUp1Visible = Visibility.Collapsed;
+            IsSignUp2Visible = Visibility.Collapsed;
+            IsSignUp3Visible = Visibility.Visible;
+        }
+
+        private void SignUp1NextCommandExecuted()
+        {
+            if (SignUpUserProperty == null)
+            {
+                SignUpUserProperty = new Property();
+            }
+            IsBusyVisible = Visibility.Collapsed;
+            IsSignUp1Visible = Visibility.Collapsed;
+            IsSignUp2Visible = Visibility.Visible;
+            IsSignUp3Visible = Visibility.Collapsed;
+        }
+
+
+        public Property SignUpUserProperty
+        {
+            get { return _signUpUserProperty; }
+            set
+            {
+                _signUpUserProperty = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public bool IsApartmentChecked
+        {
+            get { return _isApartmentChecked; }
+            set
+            {
+                _isApartmentChecked = value;
+                if (value)
+                {
+                    SignUpUserProperty.Type = "Apartments";
+                    IsFloorChecked = false;
+                    IsHouseChecked = false;
+                }
+                RaisePropertyChanged();
+            }
+        }
+        public bool IsFloorChecked
+        {
+            get { return _isFloorChecked; }
+            set
+            {
+                _isFloorChecked = value;
+                if (value)
+                {
+                    SignUpUserProperty.Type = "Floors";
+                    IsApartmentChecked = false;
+                    IsHouseChecked = false;
+                }
+                RaisePropertyChanged();
+            }
+        }
+        public bool IsHouseChecked
+        {
+            get { return _isHouseChecked; }
+            set
+            {
+                _isHouseChecked = value;
+                if (value)
+                {
+                    SignUpUserProperty.Type = "House";
+                    IsApartmentChecked = false;
+                    IsFloorChecked = false;
+                }
+                RaisePropertyChanged();
+            }
+        }
         public User SignUpUser
         {
             get { return _signUpUser; }
@@ -99,6 +196,15 @@ namespace RepayablClient.Shared.ViewModels
                 RaisePropertyChanged();
             }
         }
+        public Visibility IsSignUp3Visible
+        {
+            get { return _isSignUp3Visible; }
+            set
+            {
+                _isSignUp3Visible = value;
+                RaisePropertyChanged();
+            }
+        }
         public Visibility IsBusyVisible
         {
             get { return _isBusyVisible; }
@@ -137,6 +243,7 @@ namespace RepayablClient.Shared.ViewModels
 
         AuthenticationResult authResult = null;
         private bool isUserSaved;
+        private Visibility _isSignUp3Visible;
 
         private async Task LoginCommandExecutedAsync()
         {
@@ -193,6 +300,7 @@ namespace RepayablClient.Shared.ViewModels
         }
         private async Task CallGraphAsync(AuthenticationResult authResult)
         {
+            // _dialogService.ShowDialog("sdfsd", null, null);
             if (authResult != null)
             {
                 try
@@ -233,7 +341,7 @@ namespace RepayablClient.Shared.ViewModels
                 }
                 catch (Exception ex)
                 {
-
+                    //IDialogService dialogService = new DialogService(); 
                 }
             }
         }

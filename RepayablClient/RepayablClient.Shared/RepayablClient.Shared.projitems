@@ -33,9 +33,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\apart.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\back.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\bg.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\floor.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\forward.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\home.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Icon.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\owner.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\SharedAssets.md" />

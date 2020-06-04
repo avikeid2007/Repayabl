@@ -55,7 +55,6 @@
     <AotAssemblies>true</AotAssemblies>
     <EnableLLVM>true</EnableLLVM>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
-    
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -82,8 +81,8 @@
     <PackageReference Include="Uno.Microsoft.Xaml.Behaviors.Uwp.Managed">
       <Version>2.0.2-uno.66</Version>
     </PackageReference>
-    <PackageReference Include="Uno.UI" Version="2.4.4" />
-    <PackageReference Include="Uno.UI.RemoteControl" Version="2.4.4" Condition="'$(Configuration)'=='Debug'" />
+    <PackageReference Include="Uno.UI" Version="3.0.0-dev.166" />
+    <PackageReference Include="Uno.UI.RemoteControl" Version="3.0.0-dev.166" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Uno.UniversalImageLoader" Version="1.9.32" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
@@ -127,6 +126,15 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\forward.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\floor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\apart.png" />
   </ItemGroup>
   <Import Project="..\RepayablClient.Shared\RepayablClient.Shared.projitems" Label="Shared" Condition="Exists('..\RepayablClient.Shared\RepayablClient.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

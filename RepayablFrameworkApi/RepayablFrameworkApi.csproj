@@ -219,6 +219,10 @@
     <Compile Include="Migrations\202005250920384_CreateDb.designer.cs">
       <DependentUpon>202005250920384_CreateDb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006020624060_AlterPropertyColumn.cs" />
+    <Compile Include="Migrations\202006020624060_AlterPropertyColumn.designer.cs">
+      <DependentUpon>202006020624060_AlterPropertyColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\RepayablDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -319,6 +323,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202005250920384_CreateDb.resx">
       <DependentUpon>202005250920384_CreateDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006020624060_AlterPropertyColumn.resx">
+      <DependentUpon>202006020624060_AlterPropertyColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

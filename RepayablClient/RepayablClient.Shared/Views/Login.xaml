@@ -133,25 +133,18 @@
                     Margin="0,4"
                     HorizontalAlignment="Stretch"
                     Header="Mobile No"
-                    PlaceholderText="Mobile No"
-                    Text="{Binding SignUpUser.MobilePhone}" />
-                <!--<TextBox
-                    Grid.Row="3"
-                    Grid.ColumnSpan="2"
-                    Margin="0,4"
-                    HorizontalAlignment="Stretch"
-                    Header="Mobile No"
-                    PlaceholderText="Mobile No"
-                    Text="{Binding MobilePhone}" />-->
+                    Text="{Binding SignUpUser.MobilePhone, Mode=TwoWay}" />
+
+
+
                 <TextBox
                     Grid.Row="4"
                     Grid.ColumnSpan="2"
                     Margin="0,4"
                     HorizontalAlignment="Stretch"
                     Header="Email Id"
-                    PlaceholderText="Email Id"
-                    Text="{Binding SignUpUser.Mail}" />
-                <Button
+                    Text="{Binding SignUpUser.Mail, Mode=TwoWay}" />
+                <!--<Button
                     Grid.Row="5"
                     Grid.Column="0"
                     Height="60"
@@ -178,7 +171,7 @@
 
                         </Grid>
                     </Button.Content>
-                </Button>
+                </Button>-->
                 <Button
                     Grid.Row="5"
                     Grid.Column="1"
@@ -186,7 +179,358 @@
                     Margin="8,0,0,0"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Stretch"
-                    HorizontalContentAlignment="Stretch">
+                    HorizontalContentAlignment="Stretch"
+                    Command="{Binding SignUp1NextCommand}">
+                    <Button.Content>
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="1" Source="/Assets/forward.png" />
+
+                            <TextBlock
+                                Margin="12,0,0,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="{StaticResource TitleFontSize}"
+                                Text="Next" />
+
+                        </Grid>
+                    </Button.Content>
+                </Button>
+            </Grid>
+            <Grid Grid.Row="1" Visibility="{Binding IsSignUp2Visible}">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel
+                    Grid.ColumnSpan="3"
+                    HorizontalAlignment="Center"
+                    Background="{StaticResource RepayablAccentColor}">
+                    <TextBlock
+                        Margin="8,4"
+                        FontSize="{StaticResource HeaderFontSize}"
+                        Text="Property Details" />
+                </StackPanel>
+                <TextBlock
+                    Grid.Row="1"
+                    Grid.ColumnSpan="3"
+                    Margin="0,8"
+                    FontSize="{StaticResource TitleFontSize}"
+                    Text="Details and illustrating facts here" />
+
+                <ToggleButton
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Height="80"
+                    Margin="0,0,8,0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch"
+                    IsChecked="{Binding IsApartmentChecked, Mode=TwoWay}">
+                    <ToggleButton.Content>
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+                            <Image Source="/Assets/apart.png" />
+                            <TextBlock
+                                Grid.Row="1"
+                                FontSize="{StaticResource SubTitleFontSize}"
+                                Text="Apartments" />
+                        </Grid>
+                    </ToggleButton.Content>
+                </ToggleButton>
+                <ToggleButton
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Height="80"
+                    Margin="8,0,0,0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch"
+                    IsChecked="{Binding IsFloorChecked, Mode=TwoWay}">
+                    <ToggleButton.Content>
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+                            <Image Source="/Assets/floor.png" />
+                            <TextBlock
+                                Grid.Row="1"
+                                FontSize="{StaticResource SubTitleFontSize}"
+                                Text="Builder Floor" />
+                        </Grid>
+                    </ToggleButton.Content>
+                </ToggleButton>
+                <ToggleButton
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    Height="80"
+                    Margin="8,0,0,0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch"
+                    IsChecked="{Binding IsHouseChecked, Mode=TwoWay}">
+                    <ToggleButton.Content>
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+                            <Image Source="/Assets/home.png" />
+                            <TextBlock
+                                Grid.Row="1"
+                                FontSize="{StaticResource SubTitleFontSize}"
+                                Text="House" />
+                        </Grid>
+                    </ToggleButton.Content>
+                </ToggleButton>
+                <TextBox
+                    Grid.Row="3"
+                    Grid.ColumnSpan="3"
+                    Margin="0,4"
+                    HorizontalAlignment="Stretch"
+                    Header="Property Name"
+                    PlaceholderText="Property Name"
+                    Text="{Binding SignUpUserProperty.Name, Mode=TwoWay}" />
+                <TextBox
+                    Grid.Row="4"
+                    Grid.ColumnSpan="3"
+                    Margin="0,4"
+                    HorizontalAlignment="Stretch"
+                    Header="Society/Project"
+                    Text="{Binding SignUpUserProperty.Society, Mode=TwoWay}" />
+                <Button
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    Height="60"
+                    Margin="0,0,8,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch"
+                    Command="{Binding SignUp2BackCommand}">
+                    <Button.Content>
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="/Assets/back.png" />
+
+                            <TextBlock
+                                Grid.Column="1"
+                                Margin="12,0,0,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="{StaticResource TitleFontSize}"
+                                Text="Back" />
+
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <Button
+                    Grid.Row="5"
+                    Grid.Column="2"
+                    Height="60"
+                    Margin="8,0,0,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
+                    Command="{Binding SignUp2NextCommand}">
+                    <Button.Content>
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="1" Source="/Assets/forward.png" />
+
+                            <TextBlock
+                                Margin="12,0,0,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="{StaticResource TitleFontSize}"
+                                Text="Next" />
+
+                        </Grid>
+                    </Button.Content>
+                </Button>
+            </Grid>
+            <Grid Grid.Row="1" Visibility="{Binding IsSignUp3Visible}">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel
+                    Grid.ColumnSpan="3"
+                    HorizontalAlignment="Center"
+                    Background="{StaticResource RepayablAccentColor}">
+                    <TextBlock
+                        Margin="8,4"
+                        FontSize="{StaticResource HeaderFontSize}"
+                        Text="Property Details" />
+                </StackPanel>
+                <TextBlock
+                    Grid.Row="1"
+                    Grid.ColumnSpan="3"
+                    Margin="0,8"
+                    FontSize="{StaticResource TitleFontSize}"
+                    Text="Details and illustrating facts here" />
+
+                <!--<ToggleButton
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Height="80"
+                    Margin="0,0,8,0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch"
+                    IsChecked="{Binding IsApartmentChecked, Mode=TwoWay}">
+                    <ToggleButton.Content>
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+                            <Image Source="/Assets/apart.png" />
+                            <TextBlock
+                                Grid.Row="1"
+                                FontSize="{StaticResource SubTitleFontSize}"
+                                Text="Apartments" />
+                        </Grid>
+                    </ToggleButton.Content>
+                </ToggleButton>
+                <ToggleButton
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Height="80"
+                    Margin="8,0,0,0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch"
+                    IsChecked="{Binding IsFloorChecked, Mode=TwoWay}">
+                    <ToggleButton.Content>
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+                            <Image Source="/Assets/floor.png" />
+                            <TextBlock
+                                Grid.Row="1"
+                                FontSize="{StaticResource SubTitleFontSize}"
+                                Text="Builder Floor" />
+                        </Grid>
+                    </ToggleButton.Content>
+                </ToggleButton>
+                <ToggleButton
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    Height="80"
+                    Margin="8,0,0,0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch"
+                    IsChecked="{Binding IsHouseChecked, Mode=TwoWay}">
+                    <ToggleButton.Content>
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+                            <Image Source="/Assets/home.png" />
+                            <TextBlock
+                                Grid.Row="1"
+                                FontSize="{StaticResource SubTitleFontSize}"
+                                Text="House" />
+                        </Grid>
+                    </ToggleButton.Content>
+                </ToggleButton>-->
+                <TextBox
+                    Grid.Row="2 "
+                    Grid.ColumnSpan="3"
+                    Margin="0,4"
+                    HorizontalAlignment="Stretch"
+                    Header="Property Address"
+                    Text="{Binding SignUpUserProperty.Address, Mode=TwoWay}" />
+                <ComboBox
+                    Grid.Row="3"
+                    Grid.ColumnSpan="3"
+                    Margin="0,4"
+                    HorizontalAlignment="Stretch"
+                    Header="City"
+                    PlaceholderText="City"
+                    SelectedValue="{Binding SignUpUserProperty.City, Mode=TwoWay}" />
+                <Button
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    Height="60"
+                    Margin="0,0,8,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch"
+                    Command="{Binding SignUp2BackCommand}">
+                    <Button.Content>
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="/Assets/back.png" />
+
+                            <TextBlock
+                                Grid.Column="1"
+                                Margin="12,0,0,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="{StaticResource TitleFontSize}"
+                                Text="Back" />
+
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <Button
+                    Grid.Row="5"
+                    Grid.Column="2"
+                    Height="60"
+                    Margin="8,0,0,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
+                    Command="{Binding SignUp2NextCommand}">
                     <Button.Content>
                         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                             <Grid.ColumnDefinitions>

@@ -1073,10 +1073,13 @@ namespace RepayablClient.Shared.Repositories
         private string _name;
         private string _address;
         private string _city;
+        private string _society;
         private string _state;
         private string _country;
         private int _zip;
         private int _floorCount;
+        private string _images;
+        private string _type;
         private string _remarks;
         private System.Guid _userId;
         private User _user;
@@ -1110,7 +1113,7 @@ namespace RepayablClient.Shared.Repositories
             }
         }
     
-        [Newtonsoft.Json.JsonProperty("Address", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("Address", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Address
         {
             get { return _address; }
@@ -1124,7 +1127,7 @@ namespace RepayablClient.Shared.Repositories
             }
         }
     
-        [Newtonsoft.Json.JsonProperty("City", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("City", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string City
         {
             get { return _city; }
@@ -1138,7 +1141,21 @@ namespace RepayablClient.Shared.Repositories
             }
         }
     
-        [Newtonsoft.Json.JsonProperty("State", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("Society", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Society
+        {
+            get { return _society; }
+            set 
+            {
+                if (_society != value)
+                {
+                    _society = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("State", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string State
         {
             get { return _state; }
@@ -1152,7 +1169,7 @@ namespace RepayablClient.Shared.Repositories
             }
         }
     
-        [Newtonsoft.Json.JsonProperty("Country", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("Country", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Country
         {
             get { return _country; }
@@ -1194,7 +1211,35 @@ namespace RepayablClient.Shared.Repositories
             }
         }
     
-        [Newtonsoft.Json.JsonProperty("Remarks", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("Images", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Images
+        {
+            get { return _images; }
+            set 
+            {
+                if (_images != value)
+                {
+                    _images = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("Type", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Type
+        {
+            get { return _type; }
+            set 
+            {
+                if (_type != value)
+                {
+                    _type = value; 
+                    RaisePropertyChanged();
+                }
+            }
+        }
+    
+        [Newtonsoft.Json.JsonProperty("Remarks", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Remarks
         {
             get { return _remarks; }
