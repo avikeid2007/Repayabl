@@ -42,7 +42,10 @@
                 IsActive="{Binding IsBusy}"
                 Visibility="{Binding IsBusyVisible}" />
 
-            <Grid Grid.Row="1" Visibility="{Binding IsSignUp1Visible}">
+            <Grid
+                Grid.Row="1"
+                Margin="12,0"
+                Visibility="{Binding IsSignUp1Visible}">
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
@@ -71,7 +74,6 @@
                 <ToggleButton
                     Grid.Row="2"
                     Grid.Column="0"
-                    Height="80"
                     Margin="0,0,8,0"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
@@ -80,27 +82,29 @@
                     IsChecked="{Binding IsOwnerChecked, Mode=TwoWay}">
                     <ToggleButton.Content>
                         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
                             <Image Source="/Assets/owner.png" />
-
-                            <StackPanel
+                            <TextBlock
+                                Grid.Row="1"
+                                FontSize="{StaticResource SubTitleFontSize}"
+                                Text="Owner" />
+                            <!--<StackPanel
                                 Grid.Column="1"
                                 Margin="12,0,0,0"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Center">
                                 <TextBlock FontSize="{StaticResource SubHeaderFontSize}" Text="I am" />
                                 <TextBlock FontSize="{StaticResource TitleFontSize}" Text="Owner" />
-                            </StackPanel>
+                            </StackPanel>-->
                         </Grid>
                     </ToggleButton.Content>
                 </ToggleButton>
                 <ToggleButton
                     Grid.Row="2"
                     Grid.Column="1"
-                    Height="80"
                     Margin="8,0,0,0"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
@@ -109,20 +113,23 @@
                     IsChecked="{Binding IsTenantChecked, Mode=TwoWay}">
                     <ToggleButton.Content>
                         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
                             <Image Source="/Assets/tenant.png" />
-
-                            <StackPanel
+                            <TextBlock
+                                Grid.Row="1"
+                                FontSize="{StaticResource SubTitleFontSize}"
+                                Text="Tenant" />
+                            <!--<StackPanel
                                 Grid.Column="1"
                                 Margin="12,0,0,0"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Center">
                                 <TextBlock FontSize="{StaticResource SubHeaderFontSize}" Text="I am" />
-                                <TextBlock FontSize="{StaticResource TitleFontSize}" Text="Tenant" />
-                            </StackPanel>
+
+                            </StackPanel>-->
 
                         </Grid>
                     </ToggleButton.Content>
@@ -200,7 +207,10 @@
                     </Button.Content>
                 </Button>
             </Grid>
-            <Grid Grid.Row="1" Visibility="{Binding IsSignUp2Visible}">
+            <Grid
+                Grid.Row="1"
+                Margin="12,0"
+                Visibility="{Binding IsSignUp2Visible}">
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
@@ -234,7 +244,6 @@
                 <ToggleButton
                     Grid.Row="2"
                     Grid.Column="0"
-                    Height="80"
                     Margin="0,0,8,0"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
@@ -258,7 +267,6 @@
                 <ToggleButton
                     Grid.Row="2"
                     Grid.Column="1"
-                    Height="80"
                     Margin="8,0,0,0"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
@@ -282,7 +290,6 @@
                 <ToggleButton
                     Grid.Row="2"
                     Grid.Column="2"
-                    Height="80"
                     Margin="8,0,0,0"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
@@ -375,7 +382,10 @@
                     </Button.Content>
                 </Button>
             </Grid>
-            <Grid Grid.Row="1" Visibility="{Binding IsSignUp3Visible}">
+            <Grid
+                Grid.Row="1"
+                Margin="12,0"
+                Visibility="{Binding IsSignUp3Visible}">
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
@@ -387,11 +397,11 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
-                    <ColumnDefinition />
+
                 </Grid.ColumnDefinitions>
 
                 <StackPanel
-                    Grid.ColumnSpan="3"
+                    Grid.ColumnSpan="2"
                     HorizontalAlignment="Center"
                     Background="{StaticResource RepayablAccentColor}">
                     <TextBlock
@@ -401,7 +411,7 @@
                 </StackPanel>
                 <TextBlock
                     Grid.Row="1"
-                    Grid.ColumnSpan="3"
+                    Grid.ColumnSpan="2"
                     Margin="0,8"
                     FontSize="{StaticResource TitleFontSize}"
                     Text="Details and illustrating facts here" />
@@ -480,19 +490,49 @@
                 </ToggleButton>-->
                 <TextBox
                     Grid.Row="2 "
-                    Grid.ColumnSpan="3"
+                    Grid.ColumnSpan="2"
                     Margin="0,4"
                     HorizontalAlignment="Stretch"
                     Header="Property Address"
                     Text="{Binding SignUpUserProperty.Address, Mode=TwoWay}" />
                 <ComboBox
                     Grid.Row="3"
-                    Grid.ColumnSpan="3"
                     Margin="0,4"
                     HorizontalAlignment="Stretch"
+                    DisplayMemberPath="Name"
+                    Header="Country"
+                    ItemsSource="{Binding Countries}"
+                    PlaceholderText="Country"
+                    SelectedItem="{Binding SelectedCountry, Mode=TwoWay}"
+                    SelectedValuePath="Name" />
+                <ComboBox
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Margin="0,4"
+                    HorizontalAlignment="Stretch"
+                    DisplayMemberPath="Name"
+                    Header="State"
+                    ItemsSource="{Binding States}"
+                    PlaceholderText="State"
+                    SelectedItem="{Binding SelectedState, Mode=TwoWay}" />
+
+                <ComboBox
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Margin="0,4"
+                    HorizontalAlignment="Stretch"
+                    DisplayMemberPath="Name"
                     Header="City"
+                    ItemsSource="{Binding Cities}"
                     PlaceholderText="City"
-                    SelectedValue="{Binding SignUpUserProperty.City, Mode=TwoWay}" />
+                    SelectedItem="{Binding SelectedCity, Mode=TwoWay}" />
+                <TextBox
+                    Grid.Row="4 "
+                    Grid.Column="1"
+                    Margin="0,4"
+                    HorizontalAlignment="Stretch"
+                    Header="Zip"
+                    Text="{Binding SignUpUserProperty.Zip, Mode=TwoWay}" />
                 <Button
                     Grid.Row="5"
                     Grid.Column="0"

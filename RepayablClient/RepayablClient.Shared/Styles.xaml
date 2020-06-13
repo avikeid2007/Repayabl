@@ -73,7 +73,7 @@
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="TextWrapping" Value="WrapWholeWords" />
     </Style>
-    <Style TargetType="TextBox">
+    <Style TargetType="TextBox" x:Key="HeaderTextBox">
         <Setter Property="MinWidth" Value="{ThemeResource TextControlThemeMinWidth}" />
         <Setter Property="MinHeight" Value="{ThemeResource TextControlThemeMinHeight}" />
         <Setter Property="Foreground" Value="{ThemeResource TextControlForeground}" />
@@ -378,25 +378,19 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <!--<Style x:Key="HeaderedComboBoxStyle" TargetType="ComboBox">
+    <Style x:Key="HeaderedComboBoxStyle" TargetType="ComboBox">
         <Setter Property="Padding" Value="12,4,0,4" />
         <Setter Property="MinWidth" Value="{ThemeResource ComboBoxThemeMinWidth}" />
         <Setter Property="Foreground" Value="{ThemeResource ComboBoxForeground}" />
         <Setter Property="Background" Value="{ThemeResource ComboBoxBackground}" />
         <Setter Property="BorderBrush" Value="{ThemeResource ComboBoxBorderBrush}" />
         <Setter Property="BorderThickness" Value="{ThemeResource ComboBoxBorderThemeThickness}" />
-        --><!--<Setter Property="ItemsPanel">
-            <Setter.Value>
-                <ItemsPanelTemplate>
-                    <CarouselPanel />
-                </ItemsPanelTemplate>
-            </Setter.Value>
-        </Setter>-->
-        <!--<Setter Property="Template">
+
+        <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ComboBox">
                     <Grid x:Name="LayoutRoot">
-                        <Grid.Resources>
+                        <!--<Grid.Resources>
                             <Storyboard x:Key="OverlayOpeningAnimation">
                                 <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
                                     <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0.0" />
@@ -415,7 +409,7 @@
                                         Value="0.0" />
                                 </DoubleAnimationUsingKeyFrames>
                             </Storyboard>
-                        </Grid.Resources>
+                        </Grid.Resources>-->
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
@@ -661,7 +655,7 @@
                                         </VisualTransition.GeneratedEasingFunction>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
-                                <VisualState x:Name="NotEmpty">
+                                <!--<VisualState x:Name="NotEmpty">
                                     <VisualState.Setters>
                                         <Setter Target="HeaderContentPresenter.(FontSize)" Value="{StaticResource InputControlHeaderFontSize}" />
                                     </VisualState.Setters>
@@ -678,13 +672,13 @@
                                     <VisualState.StateTriggers>
                                         <StateTrigger IsActive="{Binding SelectedIndex, Converter={StaticResource IsSelectedConverter}, Mode=OneWay, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                                     </VisualState.StateTriggers>
-                                </VisualState>
+                                </VisualState>-->
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
-        </Setter>--><!--
+        </Setter>
     </Style>
-    <Style BasedOn="{StaticResource HeaderedComboBoxStyle}" TargetType="ComboBox" />-->
+    <!--<Style BasedOn="{StaticResource HeaderedComboBoxStyle}" TargetType="ComboBox" />-->
 </ResourceDictionary>

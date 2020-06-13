@@ -21,6 +21,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converter\EmptyStringToTrueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Member.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repositories\BaseClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Repositories\Geo\GeoBaseClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Repositories\Geo\GeoRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repositories\SwagRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LoginViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Login.xaml.cs">

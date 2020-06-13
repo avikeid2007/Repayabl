@@ -5,9 +5,11 @@ using Prism.Commands;
 using Prism.Services.Dialogs;
 using RepayablClient.Shared.Models;
 using RepayablClient.Shared.Repositories;
+using RepayablClient.Shared.Repositories.Geo;
 using RepayablClient.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -31,6 +33,7 @@ namespace RepayablClient.Shared.ViewModels
         private Visibility _isBusyVisible;
         private bool isLoginUiRequired;
         IUserClient _userClient;
+        IGeoClient _geoClient;
         IDialogService _dialogService;
         private bool _isTenantChecked;
         private bool _isOwnerChecked;
@@ -39,10 +42,19 @@ namespace RepayablClient.Shared.ViewModels
         private bool _isFloorChecked;
         private bool _isHouseChecked;
         private Property _signUpUserProperty;
-        public LoginViewModel(IUserClient userClient)
+        private ObservableCollection<Country> _countries;
+        private ObservableCollection<State> _states;
+        private ObservableCollection<City> _cities;
+        private Country _selectedCountry;
+        private State _selectedstate;
+        private City _selectedCity;
+
+
+        public LoginViewModel(IUserClient userClient, IGeoClient geoClient)
         {
             Title = "Login Page";
             _userClient = userClient;
+            _geoClient = geoClient;
             //_dialogService = dialogService;
             LoginUser = "Attempt to Login";
             LoginCommand = new AsyncCommand(LoginCommandExecutedAsync);
@@ -53,6 +65,91 @@ namespace RepayablClient.Shared.ViewModels
             IsSignUp2Visible = Visibility.Collapsed;
             IsSignUp3Visible = Visibility.Collapsed;
             IsBusyVisible = Visibility.Visible;
+            if (Countries == null)
+                _ = GetCountriesAsync();
+        }
+
+        private async Task GetCountriesAsync()
+        {
+            Countries = new ObservableCollection<Country>(await _geoClient.GetCountriesAsync());
+        }
+        private async Task GetStatesAsync(Country value)
+        {
+            Cities = null;
+            States = new ObservableCollection<State>(await _geoClient.GetStatesAsync(value.Id));
+        }
+        public Country SelectedCountry
+        {
+            get { return _selectedCountry; }
+            set
+            {
+                _selectedCountry = value;
+                {
+                    if (value != null)
+                    {
+                        SignUpUserProperty.Country = value.Name;
+                        _ = GetStatesAsync(value);
+                    }
+                }
+                RaisePropertyChanged();
+            }
+        }
+
+        public State SelectedState
+        {
+            get { return _selectedstate; }
+            set
+            {
+                _selectedstate = value;
+                if (value != null)
+                {
+                    SignUpUserProperty.Country = value.Name;
+                    _ = GetCitiesAsync(value);
+                }
+                RaisePropertyChanged();
+            }
+        }
+
+        private async Task GetCitiesAsync(State value)
+        {
+            Cities = new ObservableCollection<City>(await _geoClient.GetCitiesAsync(value.Id));
+        }
+
+        public City SelectedCity
+        {
+            get { return _selectedCity; }
+            set
+            {
+                _selectedCity = value;
+                RaisePropertyChanged();
+            }
+        }
+        public ObservableCollection<Country> Countries
+        {
+            get { return _countries; }
+            set
+            {
+                _countries = value;
+                RaisePropertyChanged();
+            }
+        }
+        public ObservableCollection<State> States
+        {
+            get { return _states; }
+            set
+            {
+                _states = value;
+                RaisePropertyChanged();
+            }
+        }
+        public ObservableCollection<City> Cities
+        {
+            get { return _cities; }
+            set
+            {
+                _cities = value;
+                RaisePropertyChanged();
+            }
         }
 
         private void SignUp2BackCommandExecuted()
@@ -333,7 +430,7 @@ namespace RepayablClient.Shared.ViewModels
                                 UserName = CurrentUser.UserPrincipalName,
                                 Password = GeneratePassword(8)
                             };
-                            await SaveUserAsync(SignUpUser);
+                            // await SaveUserAsync(SignUpUser);
                             IsBusyVisible = Visibility.Collapsed;
                             IsSignUp1Visible = Visibility.Visible;
                         }

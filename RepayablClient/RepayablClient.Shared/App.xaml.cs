@@ -2,6 +2,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Client;
 using Prism.Ioc;
 using RepayablClient.Shared.Repositories;
+using RepayablClient.Shared.Repositories.Geo;
 #if __ANDROID__
 using RepayablClient.Droid;
 #endif
@@ -80,6 +81,7 @@ namespace RepayablClient
         {
             containerRegistry.RegisterForNavigation<Login>("Login");
             containerRegistry.RegisterSingleton<IUserClient, UserClient>();
+            containerRegistry.RegisterSingleton<IGeoClient, GeoClient>();
         }
 
         /// <summary>
